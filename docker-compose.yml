@@ -4,7 +4,7 @@ services:
     ports:
       - "4000:4000"
     environment:
-      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE:-insecure_local_dev_secret_do_not_use_in_production}
       - PHX_HOST=${PHX_HOST:-localhost}
       - PORT=4000
     restart: unless-stopped
