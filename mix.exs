@@ -29,7 +29,9 @@ defmodule Reibisch.MixProject do
       {:phoenix_live_view, "~> 1.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:bandit, "~> 1.5"},
-      {:jason, "~> 1.4"}
+      {:jason, "~> 1.4"},
+      {:telemetry_metrics, "~> 1.0"},
+      {:telemetry_poller, "~> 1.0"}
     ]
   end
 end
