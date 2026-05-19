@@ -39,10 +39,10 @@ Before making changes for any non-trivial task:
 - Preserve current UX and visual style unless the task says otherwise.
 - Prefer simple controlled forms over fancy abstractions unless already used in the project.
 
-## Vercel / deployment rules
-- Assume the deployment target is Vercel.
-- Do not change deployment config, environment variables, or secrets unless explicitly asked.
-- Avoid server-only solutions unless the project already uses them.
+## Deployment rules
+- Assume the deployment target is a VPS running Docker.
+- The app is a Phoenix OTP release served via `docker-compose`.
+- Do not change `Dockerfile`, `docker-compose.yml`, or environment variables unless explicitly asked.
 - Keep compatibility with the current build setup.
 
 ## Safety rules
