@@ -31,13 +31,11 @@ Before making changes for any non-trivial task:
 - Keep functions and components focused and readable.
 - Prefer explicit naming over clever abstractions.
 
-## React rules
-- Follow the project's existing component structure.
-- Reuse existing UI primitives where possible.
-- Keep state local unless shared state is clearly necessary.
-- Do not introduce a new state management library.
+## Phoenix / Elixir rules
+- Follow the project's existing module and template structure.
+- Reuse existing HEEx components and helpers where possible.
+- Keep logic in controllers and templates simple; avoid premature LiveView unless interactivity is explicitly requested.
 - Preserve current UX and visual style unless the task says otherwise.
-- Prefer simple controlled forms over fancy abstractions unless already used in the project.
 
 ## Deployment rules
 - Assume the deployment target is a VPS running Docker.
@@ -62,7 +60,7 @@ Preferred order:
 If a listed validation command is expensive, mention it before running.
 
 ## Test-driven development rules
-- Always run `npm test` before committing or pushing any change.
+- Always run `mix test` before committing or pushing any change.
 - If the changed code is covered by existing tests, a passing test run is required before the commit proceeds.
 - If a change breaks a test, fix the code (or the test if it is demonstrably wrong) before committing — never skip or delete a test to make a build pass.
 - When adding new logic that is testable (pure functions, algorithmic scoring, data transformations), add tests for it in the same commit.
