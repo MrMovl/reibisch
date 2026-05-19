@@ -1,0 +1,17 @@
+# Build artifacts
+/_build/
+/deps/
+*.ez
+
+# Generated files
+/priv/static/assets/
+
+# Secrets
+*.secret.exs
+.env
+
+# Test coverage
+/cover/
+
+# Elixir release
+/rel/
