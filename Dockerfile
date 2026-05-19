@@ -47,4 +47,4 @@ COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/reibisch ./
 
 USER nobody
 
-CMD ["/app/bin/reibisch", "server"]
+CMD ["/app/bin/reibisch", "start"]
