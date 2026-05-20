@@ -1,25 +1,256 @@
-<main>
-  <section>
-    <h1>Your Business Name</h1>
-    <p>A short tagline describing what you do.</p>
+<%
+  lang = assigns[:lang] || "de"
+
+  copy = %{
+    "de" => %{
+      nav: %{work: "Arbeit", about: "Über mich", contact: "Kontakt"},
+      hero: %{
+        eyebrow: "Software · Apps · Beratung",
+        question: "Was klemmt?",
+        sub: "Erzählen Sie mir, woran Sie hängen — was unklar ist, was schief läuft, was niemand richtig erklärt hat. Wir finden gemeinsam einen Weg, der zu Ihnen passt.",
+        cta: "Schreiben Sie mir"
+      },
+      about: %{
+        section: "Über",
+        title: "Tomke Reibisch",
+        role: "Entwickler & Berater · Norddeutschland",
+        body: "Ich baue Software, seit das noch „Homepages“ hieß. Heute heißt es Apps, APIs, Plattformen — die Grundfrage bleibt: Was soll das Ding eigentlich tun? Ich höre zu, stelle ein paar unbequeme Fragen, und liefere etwas, das funktioniert. Pragmatisch, ohne Showeffekte.",
+        points: [
+          "Ich höre erst zu, dann baue ich.",
+          "Komplexität ist Schulden, keine Eleganz.",
+          "Ihre Endkund:innen sind nicht Sie. Das merkt man der Software an."
+        ]
+      },
+      services: %{
+        section: "Leistungen",
+        title: "Was ich mache",
+        count: "3 Bereiche",
+        items: [
+          %{tag: "01", name: "Software-Entwicklung", body: "Backends, Integrationen, Datenpipelines. Lange Lebensdauer, wenig Drama. Auch dann, wenn etwas Bestehendes zu retten ist."},
+          %{tag: "02", name: "App-Entwicklung", body: "Web- und Mobile-Apps von der Idee bis zum Release. Klein anfangen, sauber wachsen, an echten Nutzer:innen testen."},
+          %{tag: "03", name: "Beratung", body: "Web-Auftritte, Usability, Produktklarheit. Wo ist der Knoten? Was kostet Ihre Kund:innen heute Geduld? Ich finde es heraus, Sie entscheiden."}
+        ]
+      },
+      contact: %{
+        section: "Kontakt",
+        title: "Reden wir",
+        sub: "Ein kurzer Anriss reicht. Eine Skizze, ein Screenshot, ein Satz — egal. Ich melde mich innerhalb von zwei Werktagen.",
+        email: "hallo@reibisch.de",
+        cta: "Hallo sagen",
+        meta: "Antwort meist innerhalb 48h"
+      },
+      footer: %{
+        colophon: "Norddeutschland · Festland & Küste",
+        impressum: "Impressum",
+        privacy: "Datenschutz"
+      }
+    },
+    "en" => %{
+      nav: %{work: "Work", about: "About", contact: "Contact"},
+      hero: %{
+        eyebrow: "Software · Apps · Consulting",
+        question: "What's getting in the way?",
+        sub: "Tell me where you're stuck — what's confusing, what's slipping, what nobody has properly explained. We'll find a way forward that actually fits your situation.",
+        cta: "Send me a note"
+      },
+      about: %{
+        section: "About",
+        title: "Tomke Reibisch",
+        role: "Developer & consultant · Northern Germany",
+        body: "I’ve been building software since we still called them “homepages”. Now it’s apps, APIs, platforms — the underlying question hasn’t changed: what is this thing actually supposed to do? I listen, ask a few uncomfortable questions, and ship something that works. Pragmatic, no theatre.",
+        points: [
+          "Listening first. Building second.",
+          "Complexity is debt, not elegance.",
+          "Your end-users aren't you. It shows in the product."
+        ]
+      },
+      services: %{
+        section: "Services",
+        title: "What I do",
+        count: "3 areas",
+        items: [
+          %{tag: "01", name: "Software development", body: "Backends, integrations, data pipelines. Built to last, low on drama. Including the rescue jobs nobody else wants."},
+          %{tag: "02", name: "App creation", body: "Web and mobile apps from sketch to release. Start small, grow cleanly, validate with people who'll actually use it."},
+          %{tag: "03", name: "Consulting", body: "Web presence, usability, product clarity. Where's the knot? What's costing your customers patience today? I figure it out — you decide what to do."}
+        ]
+      },
+      contact: %{
+        section: "Contact",
+        title: "Let's talk",
+        sub: "A rough sketch is enough. A screenshot, a paragraph, a single confused sentence — whatever you have. I'll get back to you within two business days.",
+        email: "hallo@reibisch.de",
+        cta: "Say hello",
+        meta: "Usually answers within 48h"
+      },
+      footer: %{
+        colophon: "Northern Germany · mainland & coast",
+        impressum: "Imprint",
+        privacy: "Privacy"
+      }
+    }
+  }
+
+  t = copy[lang]
+  year = DateTime.utc_now().year
+
+  # Precompute SVG wave paths so we can use them in HEEx attribute values.
+  # wave_path(y_offset, amplitude, period, width, step) -> SVG path "d" string
+  wave_path = fn y_off, amp, period, width ->
+    points =
+      for x <- 0..width//4 do
+        y = y_off + :math.sin(x / period * :math.pi() * 2) * amp
+        "L #{x} #{Float.round(y, 2)}"
+      end
+    "M 0 #{y_off} " <> Enum.join(points, " ")
+  end
+
+  # Wave separator 1 (post-hero): 3 lines, amp=4, period=56, width=1280
+  ws1_p1 = wave_path.(10, 4, 56, 1280)
+  ws1_p2 = wave_path.(19, 4, 56, 1280)
+  ws1_p3 = wave_path.(28, 4, 56, 1280)
+
+  # Wave separator 2 (pre-contact): 2 lines, amp=3, period=56, width=1280
+  ws2_p1 = wave_path.(9,  3, 56, 1280)
+  ws2_p2 = wave_path.(19, 3, 56, 1280)
+
+  # Contact band background waves: 4 lines, amp=6, period=80, width=1400
+  cb_p1 = wave_path.(20,  6, 80, 1400)
+  cb_p2 = wave_path.(48,  6, 80, 1400)
+  cb_p3 = wave_path.(76,  6, 80, 1400)
+  cb_p4 = wave_path.(104, 6, 80, 1400)
+%>
+
+<nav class="lang-switch" aria-label="Language">
+  <a href="/" class={if lang == "de", do: "active", else: ""}>DE</a>
+  <a href="/en" class={if lang == "en", do: "active", else: ""}>EN</a>
+</nav>
+
+<div class="page">
+
+  <%# Top bar %>
+  <div class="top-bar">
+    <div class="top-bar-brand mono">
+      Reibisch<span>  ·  Software &amp; Beratung</span>
+    </div>
+    <nav class="top-bar-nav">
+      <a href="#about"><%= t.nav.about %></a>
+      <a href="#services"><%= t.nav.work %></a>
+      <a href="#contact"><%= t.nav.contact %></a>
+    </nav>
+    <div class="top-bar-coords mono">53°33′N · 9°59′E</div>
+  </div>
+
+  <%# Hero %>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-eyebrow mono"><%= t.hero.eyebrow %></div>
+    <h1 id="hero-heading" class="hero-h1 serif"><%= t.hero.question %></h1>
+    <div class="hero-row">
+      <p class="hero-sub serif"><%= t.hero.sub %></p>
+      <div class="hero-cta-col">
+        <a href={"mailto:#{t.contact.email}"} class="cta cta--sand">
+          <%= t.hero.cta %> <span class="arrow">→</span>
+        </a>
+        <div class="hero-meta mono"><%= String.upcase(t.contact.meta) %></div>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>Services</h2>
-    <ul>
-      <li>Service One — short description</li>
-      <li>Service Two — short description</li>
-      <li>Service Three — short description</li>
+  <%# Wave separator 1 — 3 lines after hero %>
+  <div class="wave-sep" aria-hidden="true">
+    <div class="wave-drift wave-drift--fast">
+      <svg width="1280" height="38" viewBox="0 0 1280 38" aria-hidden="true">
+        <path d={ws1_p1} stroke="#26465a" stroke-width="1" fill="none" opacity="0.87" stroke-linecap="round"/>
+        <path d={ws1_p2} stroke="#26465a" stroke-width="1" fill="none" opacity="0.74" stroke-linecap="round"/>
+        <path d={ws1_p3} stroke="#26465a" stroke-width="1" fill="none" opacity="0.61" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <%# About %>
+  <section id="about" class="about" aria-labelledby="about-heading">
+    <div class="section-label serif">
+      <span class="section-label-mark mono">01</span><%= t.about.section %>
+    </div>
+    <div>
+      <div id="about-heading" class="about-name serif"><%= t.about.title %></div>
+      <div class="about-role mono"><%= t.about.role %></div>
+      <p class="about-body"><%= t.about.body %></p>
+    </div>
+    <ul class="about-points" aria-label="Principles">
+      <%= for {point, i} <- Enum.with_index(t.about.points) do %>
+        <li class="about-point">
+          <span class="about-point-num mono">0<%= i + 1 %>/</span>
+          <span class="about-point-text serif"><%= point %></span>
+        </li>
+      <% end %>
     </ul>
   </section>
 
-  <section>
-    <h2>About</h2>
-    <p>A paragraph about you and your work.</p>
+  <%# Services %>
+  <section id="services" class="services" aria-labelledby="services-heading">
+    <div class="services-header">
+      <div class="section-label serif">
+        <span class="section-label-mark mono">02</span><%= t.services.section %>
+      </div>
+      <h2 id="services-heading" class="services-h2 serif"><%= t.services.title %></h2>
+      <div class="services-count mono"><%= t.services.count %></div>
+    </div>
+    <div>
+      <%= for s <- t.services.items do %>
+        <div class="service-row">
+          <div class="service-num mono"><%= s.tag %> —</div>
+          <div class="service-name serif"><%= s.name %></div>
+          <div class="service-body"><%= s.body %></div>
+          <div class="service-arrow mono">→</div>
+        </div>
+      <% end %>
+    </div>
   </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>your@email.com</p>
+  <%# Wave separator 2 — 2 lines before contact %>
+  <div class="wave-sep" aria-hidden="true">
+    <div class="wave-drift wave-drift--fast">
+      <svg width="1280" height="28" viewBox="0 0 1280 28" aria-hidden="true">
+        <path d={ws2_p1} stroke="#26465a" stroke-width="1" fill="none" opacity="0.87" stroke-linecap="round"/>
+        <path d={ws2_p2} stroke="#26465a" stroke-width="1" fill="none" opacity="0.74" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <%# Contact band %>
+  <section id="contact" class="contact" aria-labelledby="contact-heading">
+    <%# Background waves %>
+    <div class="contact-waves wave-drift wave-drift--slow" aria-hidden="true">
+      <svg width="1400" height="130" viewBox="0 0 1400 130" aria-hidden="true">
+        <path d={cb_p1} stroke="#c9b87a" stroke-width="1" fill="none" opacity="1.0"  stroke-linecap="round"/>
+        <path d={cb_p2} stroke="#c9b87a" stroke-width="1" fill="none" opacity="0.85" stroke-linecap="round"/>
+        <path d={cb_p3} stroke="#c9b87a" stroke-width="1" fill="none" opacity="0.70" stroke-linecap="round"/>
+        <path d={cb_p4} stroke="#c9b87a" stroke-width="1" fill="none" opacity="0.55" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="contact-label serif">
+      <span class="contact-label-mark mono">03</span><%= t.contact.section %>
+    </div>
+    <div class="contact-row">
+      <h2 id="contact-heading" class="contact-h2 serif"><%= t.contact.title %></h2>
+      <p class="contact-sub"><%= t.contact.sub %></p>
+    </div>
+    <div class="contact-bottom">
+      <a href={"mailto:#{t.contact.email}"} class="contact-email serif"><%= t.contact.email %></a>
+      <a href={"mailto:#{t.contact.email}"} class="cta cta--sand">
+        <%= t.contact.cta %> <span class="arrow">→</span>
+      </a>
+    </div>
   </section>
-</main>
+
+  <%# Footer %>
+  <footer class="site-footer">
+    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch · <%= t.footer.colophon %></div>
+    <div class="footer-links mono">
+      <a href="#"><%= t.footer.impressum %></a>
+      <a href="#"><%= t.footer.privacy %></a>
+    </div>
+  </footer>
+
+</div>
