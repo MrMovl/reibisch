@@ -14,5 +14,6 @@ defmodule ReibischWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/en", PageController, :home_en
   end
 end
