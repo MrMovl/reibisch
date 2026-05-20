@@ -104,14 +104,14 @@
     "M 0 #{y_off} " <> Enum.join(points, " ")
   end
 
-  # Wave separator 1 (post-hero): 3 lines, amp=4, period=56, width=1280
-  ws1_p1 = wave_path.(10, 4, 56, 1280)
-  ws1_p2 = wave_path.(19, 4, 56, 1280)
-  ws1_p3 = wave_path.(28, 4, 56, 1280)
+  # Wave separator 1 (post-hero): 3 lines, amp=4, period=56, width=1400
+  ws1_p1 = wave_path.(10, 4, 56, 1400)
+  ws1_p2 = wave_path.(19, 4, 56, 1400)
+  ws1_p3 = wave_path.(28, 4, 56, 1400)
 
-  # Wave separator 2 (pre-contact): 2 lines, amp=3, period=56, width=1280
-  ws2_p1 = wave_path.(9,  3, 56, 1280)
-  ws2_p2 = wave_path.(19, 3, 56, 1280)
+  # Wave separator 2 (pre-contact): 2 lines, amp=3, period=56, width=1400
+  ws2_p1 = wave_path.(9,  3, 56, 1400)
+  ws2_p2 = wave_path.(19, 3, 56, 1400)
 
   # Contact band background waves: 4 lines, amp=6, period=80, width=1400
   cb_p1 = wave_path.(20,  6, 80, 1400)
@@ -119,11 +119,6 @@
   cb_p3 = wave_path.(76,  6, 80, 1400)
   cb_p4 = wave_path.(104, 6, 80, 1400)
 %>
-
-<nav class="lang-switch" aria-label="Language">
-  <a href="/" class={if lang == "de", do: "active", else: ""}>DE</a>
-  <a href="/en" class={if lang == "en", do: "active", else: ""}>EN</a>
-</nav>
 
 <div class="page">
 
@@ -135,18 +130,21 @@
         <text x="16" y="21" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="20" fill="#eef2f1">R</text>
         <path d="M 8 27 Q 12 24 16 27 T 24 27" fill="none" stroke="#c9b87a" stroke-width="1.6" stroke-linecap="round"/>
       </svg>
+      <span>· Software & Beratung</span>
     </div>
     <nav class="top-bar-nav">
       <a href="#about"><%= t.nav.about %></a>
       <a href="#services"><%= t.nav.work %></a>
       <a href="#contact"><%= t.nav.contact %></a>
     </nav>
-    <div class="top-bar-coords mono">53°33′N · 9°59′E</div>
+    <nav class="lang-switch" aria-label="Language">
+      <a href="/" class={if lang == "de", do: "active", else: ""}>DE</a>
+      <a href="/en" class={if lang == "en", do: "active", else: ""}>EN</a>
+    </nav>
   </div>
 
   <%# Hero %>
   <section class="hero" aria-labelledby="hero-heading">
-    <div class="hero-eyebrow mono"><%= t.hero.eyebrow %></div>
     <h1 id="hero-heading" class="hero-h1 serif"><%= t.hero.question %></h1>
     <div class="hero-row">
       <p class="hero-sub serif"><%= t.hero.sub %></p>
@@ -162,7 +160,7 @@
   <%# Wave separator 1 — 3 lines after hero %>
   <div class="wave-sep" aria-hidden="true">
     <div class="wave-drift wave-drift--fast">
-      <svg width="1280" height="38" viewBox="0 0 1280 38" aria-hidden="true">
+      <svg width="1400" height="38" viewBox="0 0 1400 38" aria-hidden="true">
         <path d={ws1_p1} stroke="#26465a" stroke-width="1" fill="none" opacity="0.87" stroke-linecap="round"/>
         <path d={ws1_p2} stroke="#26465a" stroke-width="1" fill="none" opacity="0.74" stroke-linecap="round"/>
         <path d={ws1_p3} stroke="#26465a" stroke-width="1" fill="none" opacity="0.61" stroke-linecap="round"/>
@@ -197,15 +195,15 @@
         <span class="section-label-mark mono">02</span><%= t.services.section %>
       </div>
       <h2 id="services-heading" class="services-h2 serif"><%= t.services.title %></h2>
-      <div class="services-count mono"><%= t.services.count %></div>
+
     </div>
     <div>
       <%= for s <- t.services.items do %>
         <div class="service-row">
-          <div class="service-num mono"><%= s.tag %> —</div>
+          <div class="service-num mono">~</div>
           <div class="service-name serif"><%= s.name %></div>
           <div class="service-body"><%= s.body %></div>
-          <div class="service-arrow mono">→</div>
+
         </div>
       <% end %>
     </div>
@@ -214,7 +212,7 @@
   <%# Wave separator 2 — 2 lines before contact %>
   <div class="wave-sep" aria-hidden="true">
     <div class="wave-drift wave-drift--fast">
-      <svg width="1280" height="28" viewBox="0 0 1280 28" aria-hidden="true">
+      <svg width="1400" height="28" viewBox="0 0 1400 28" aria-hidden="true">
         <path d={ws2_p1} stroke="#26465a" stroke-width="1" fill="none" opacity="0.87" stroke-linecap="round"/>
         <path d={ws2_p2} stroke="#26465a" stroke-width="1" fill="none" opacity="0.74" stroke-linecap="round"/>
       </svg>

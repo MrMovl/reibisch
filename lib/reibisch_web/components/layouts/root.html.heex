@@ -36,8 +36,9 @@
 
       /* Language switch */
       .lang-switch {
-        position: fixed; top: 16px; right: 16px; z-index: 50;
         display: inline-flex;
+        align-self: center;
+        justify-self: end;
         background: rgba(255,255,255,0.75);
         backdrop-filter: blur(8px);
         border: 1px solid rgba(0,0,0,0.08);
@@ -94,14 +95,6 @@
         justify-content: center;
       }
       .top-bar-nav a { color: var(--soft); text-decoration: none; }
-      .top-bar-coords {
-        font-family: 'Geist Mono', monospace;
-        font-size: 11px;
-        color: var(--soft);
-        letter-spacing: 0.06em;
-        text-align: right;
-        padding-right: 88px;
-      }
 
       /* Hero */
       .hero {
@@ -312,7 +305,7 @@
         padding: 24px 0;
         border-top: 1px solid var(--rule);
         display: grid;
-        grid-template-columns: 60px 1fr 1.6fr 36px;
+        grid-template-columns: 20px 1fr 1.6fr;
         gap: 28px;
         align-items: start;
         transition: padding-left 0.25s ease;
@@ -368,6 +361,8 @@
         align-items: center;
         opacity: 0.18;
         pointer-events: none;
+        mask-image: linear-gradient(to right, black 40%, transparent 68%);
+        -webkit-mask-image: linear-gradient(to right, black 40%, transparent 68%);
       }
       .contact-label {
         font-family: 'Newsreader', serif;
@@ -461,29 +456,28 @@
       /* Wave animations */
       @media (prefers-reduced-motion: no-preference) {
         .wave-drift--fast {
-          animation: hafen-drift 7s ease-in-out infinite alternate;
+          animation: hafen-drift 6.5s ease-in-out infinite alternate;
         }
         .wave-drift--slow {
-          animation: hafen-drift-slow 11.5s ease-in-out infinite alternate;
+          animation: hafen-drift-slow 11s ease-in-out infinite alternate;
         }
         @keyframes hafen-drift {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-14px); }
+          from { transform: translateX(0) translateY(0); }
+          to   { transform: translateX(-72px) translateY(4px); }
         }
         @keyframes hafen-drift-slow {
-          from { transform: translateX(0); }
-          to   { transform: translateX(8px); }
+          from { transform: translateX(0) translateY(0); }
+          to   { transform: translateX(48px) translateY(-3px); }
         }
       }
 
       /* Mobile */
       @media (max-width: 900px) {
         .top-bar {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr auto;
           padding: 16px 24px 0;
         }
         .top-bar-nav { display: none; }
-        .top-bar-coords { font-size: 10px; }
 
         .hero { padding: 40px 24px 32px; }
         .hero-h1 { font-size: clamp(52px, 10vw, 104px); }
@@ -524,7 +518,7 @@
 
         .site-footer { padding: 16px 24px; flex-direction: column; gap: 12px; align-items: flex-start; }
 
-        .lang-switch { top: 12px; right: 12px; }
+
       }
     </style>
   </head>
