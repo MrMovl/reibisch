@@ -104,14 +104,14 @@
     "M 0 #{y_off} " <> Enum.join(points, " ")
   end
 
-  # Wave separator 1 (post-hero): 3 lines, amp=4, period=56, width=1280
-  ws1_p1 = wave_path.(10, 4, 56, 1280)
-  ws1_p2 = wave_path.(19, 4, 56, 1280)
-  ws1_p3 = wave_path.(28, 4, 56, 1280)
+  # Wave separator 1 (post-hero): 3 lines, amp=4, period=56, width=1400
+  ws1_p1 = wave_path.(10, 4, 56, 1400)
+  ws1_p2 = wave_path.(19, 4, 56, 1400)
+  ws1_p3 = wave_path.(28, 4, 56, 1400)
 
-  # Wave separator 2 (pre-contact): 2 lines, amp=3, period=56, width=1280
-  ws2_p1 = wave_path.(9,  3, 56, 1280)
-  ws2_p2 = wave_path.(19, 3, 56, 1280)
+  # Wave separator 2 (pre-contact): 2 lines, amp=3, period=56, width=1400
+  ws2_p1 = wave_path.(9,  3, 56, 1400)
+  ws2_p2 = wave_path.(19, 3, 56, 1400)
 
   # Contact band background waves: 4 lines, amp=6, period=80, width=1400
   cb_p1 = wave_path.(20,  6, 80, 1400)
@@ -160,7 +160,7 @@
   <%# Wave separator 1 — 3 lines after hero %>
   <div class="wave-sep" aria-hidden="true">
     <div class="wave-drift wave-drift--fast">
-      <svg width="1280" height="38" viewBox="0 0 1280 38" aria-hidden="true">
+      <svg width="1400" height="38" viewBox="0 0 1400 38" aria-hidden="true">
         <path d={ws1_p1} stroke="#26465a" stroke-width="1" fill="none" opacity="0.87" stroke-linecap="round"/>
         <path d={ws1_p2} stroke="#26465a" stroke-width="1" fill="none" opacity="0.74" stroke-linecap="round"/>
         <path d={ws1_p3} stroke="#26465a" stroke-width="1" fill="none" opacity="0.61" stroke-linecap="round"/>
@@ -212,7 +212,7 @@
   <%# Wave separator 2 — 2 lines before contact %>
   <div class="wave-sep" aria-hidden="true">
     <div class="wave-drift wave-drift--fast">
-      <svg width="1280" height="28" viewBox="0 0 1280 28" aria-hidden="true">
+      <svg width="1400" height="28" viewBox="0 0 1400 28" aria-hidden="true">
         <path d={ws2_p1} stroke="#26465a" stroke-width="1" fill="none" opacity="0.87" stroke-linecap="round"/>
         <path d={ws2_p2} stroke="#26465a" stroke-width="1" fill="none" opacity="0.74" stroke-linecap="round"/>
       </svg>
