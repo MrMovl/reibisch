@@ -1,18 +1,22 @@
 ARG BUILDER_IMAGE="elixir:1.17-slim"
 ARG RUNNER_IMAGE="debian:bookworm-slim"
 
-FROM ${BUILDER_IMAGE} AS builder
+FROM ${BUILDER_IMAGE} AS dev
 
 RUN apt-get update -y && apt-get install -y build-essential git \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN mix local.hex --force && mix local.rebar --force
+
 WORKDIR /app
 
-RUN mix local.hex --force && mix local.rebar --force
+CMD ["mix", "phx.server"]
+
+FROM dev AS builder
 
 ENV MIX_ENV="prod"
 
-COPY mix.exs ./
+COPY mix.exs mix.lock ./
 RUN mix deps.get --only $MIX_ENV
 RUN mkdir config
 COPY config/config.exs config/

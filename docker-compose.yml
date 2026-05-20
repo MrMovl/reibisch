@@ -1,10 +1,21 @@
 services:
   web:
-    build: .
+    build:
+      context: .
+      target: dev
+    command: sh -c "mix deps.get && mix phx.server"
     ports:
       - "4000:4000"
+    volumes:
+      - .:/app
+      - mix_deps:/app/deps
+      - mix_build:/app/_build
     environment:
-      - SECRET_KEY_BASE=${SECRET_KEY_BASE:-insecure_local_dev_secret_do_not_use_in_production}
+      - MIX_ENV=dev
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE:-dev_secret_key_base_at_least_64_bytes_long_replace_in_prod_please}
       - PHX_HOST=${PHX_HOST:-localhost}
       - PORT=4000
-    restart: unless-stopped
+
+volumes:
+  mix_deps:
+  mix_build:
