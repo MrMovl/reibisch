@@ -1,0 +1,77 @@
+<%
+  year = DateTime.utc_now().year
+%>
+
+<div class="page">
+
+  <%# Top bar %>
+  <div class="top-bar">
+    <div class="top-bar-brand mono">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;">
+        <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0">
+          <rect width="32" height="32" fill="#26465a" rx="4"/>
+          <text x="16" y="21" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="20" fill="#eef2f1">R</text>
+          <path d="M 8 27 Q 12 24 16 27 T 24 27" fill="none" stroke="#c9b87a" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span>· Software & Beratung</span>
+      </a>
+    </div>
+    <nav class="top-bar-nav">
+      <a href="/#about">Über mich</a>
+      <a href="/#services">Arbeit</a>
+      <a href="/#contact">Kontakt</a>
+    </nav>
+    <nav class="lang-switch" aria-label="Language">
+      <a href="/">DE</a>
+      <a href="/en">EN</a>
+    </nav>
+  </div>
+
+  <%# Imprint content %>
+  <main style="display:flex;justify-content:center;padding:80px 48px 120px;">
+    <div style="max-width:60ch;width:100%;">
+      <h1 class="serif" style="font-size:42px;font-weight:350;line-height:1.05;color:var(--deep);letter-spacing:-0.015em;margin:0 0 48px;">Impressum</h1>
+
+      <section style="margin-bottom:32px;">
+        <h2 class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin:0 0 12px;">Angaben gemäß § 5 TMG</h2>
+        <p style="font-size:17px;line-height:1.65;margin:0;">
+          Tomke Reibisch<br/>
+          Software &amp; Beratung<br/>
+          <span style="color:var(--soft);">[Straße und Hausnummer]</span><br/>
+          <span style="color:var(--soft);">[PLZ Ort]</span>
+        </p>
+      </section>
+
+      <section style="margin-bottom:32px;">
+        <h2 class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin:0 0 12px;">Kontakt</h2>
+        <p style="font-size:17px;line-height:1.65;margin:0;">
+          E-Mail: <a href="mailto:hallo@reibisch.de" style="color:var(--deep);text-decoration:none;border-bottom:1px solid var(--rule);">hallo@reibisch.de</a>
+        </p>
+      </section>
+
+      <section style="margin-bottom:32px;">
+        <h2 class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin:0 0 12px;">Umsatzsteuer-ID</h2>
+        <p style="font-size:17px;line-height:1.65;margin:0;color:var(--soft);">
+          [Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG, sofern vorhanden]
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin:0 0 12px;">Haftung für Inhalte</h2>
+        <p style="font-size:17px;line-height:1.65;margin:0;">
+          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <%# Footer %>
+  <footer class="site-footer">
+    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch · Norddeutschland · Festland & Küste</div>
+    <div class="footer-links mono">
+      <a href="/imprint">Impressum</a>
+      <a href="#">Datenschutz</a>
+    </div>
+  </footer>
+
+</div>

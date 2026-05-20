@@ -15,5 +15,6 @@ defmodule ReibischWeb.Router do
 
     get "/", PageController, :home
     get "/en", PageController, :home_en
+    get "/imprint", PageController, :imprint
   end
 end
