@@ -120,11 +120,6 @@
   cb_p4 = wave_path.(104, 6, 80, 1400)
 %>
 
-<nav class="lang-switch" aria-label="Language">
-  <a href="/" class={if lang == "de", do: "active", else: ""}>DE</a>
-  <a href="/en" class={if lang == "en", do: "active", else: ""}>EN</a>
-</nav>
-
 <div class="page">
 
   <%# Top bar %>
@@ -143,6 +138,10 @@
       <a href="#contact"><%= t.nav.contact %></a>
     </nav>
     <div class="top-bar-coords mono">53°33′N · 9°59′E</div>
+    <nav class="lang-switch" aria-label="Language">
+      <a href="/" class={if lang == "de", do: "active", else: ""}>DE</a>
+      <a href="/en" class={if lang == "en", do: "active", else: ""}>EN</a>
+    </nav>
   </div>
 
   <%# Hero %>
