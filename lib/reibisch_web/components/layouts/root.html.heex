@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <title>Reibisch — Tomke Reibisch · Software &amp; Beratung</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&family=Newsreader:ital,wght@0,350;1,350&display=swap" rel="stylesheet" />
@@ -72,6 +73,9 @@
         align-items: center;
       }
       .top-bar-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         font-family: 'Geist Mono', monospace;
         font-size: 12px;
         letter-spacing: 0.02em;
