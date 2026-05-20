@@ -456,18 +456,18 @@
       /* Wave animations */
       @media (prefers-reduced-motion: no-preference) {
         .wave-drift--fast {
-          animation: hafen-drift 7s ease-in-out infinite alternate;
+          animation: hafen-drift 6s ease-in-out infinite alternate;
         }
         .wave-drift--slow {
-          animation: hafen-drift-slow 11.5s ease-in-out infinite alternate;
+          animation: hafen-drift-slow 10s ease-in-out infinite alternate;
         }
         @keyframes hafen-drift {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-14px); }
+          from { transform: translateX(0) translateY(0); }
+          to   { transform: translateX(-72px) translateY(4px); }
         }
         @keyframes hafen-drift-slow {
-          from { transform: translateX(0); }
-          to   { transform: translateX(8px); }
+          from { transform: translateX(0) translateY(0); }
+          to   { transform: translateX(48px) translateY(-3px); }
         }
       }
 
