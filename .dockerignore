@@ -1,0 +1,12 @@
+.git
+.github
+.env
+.env.*
+!.env.example
+_build
+deps
+test
+tmp
+CLAUDE.md
+README.md
+docker-compose.yml
