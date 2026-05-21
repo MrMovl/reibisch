@@ -37,7 +37,8 @@
         sub: "Ein kurzer Anriss reicht. Eine Skizze, ein Screenshot, ein verworrener Satz — egal was Sie haben. Ich melde mich innerhalb von zwei Werktagen.",
         email: "hallo@reibisch.de",
         cta: "Hallo sagen",
-        meta: "Antwort meist innerhalb 48h"
+        meta: "Antwort meist innerhalb 48h",
+        card: "Visitenkarte"
       },
       footer: %{
         impressum: "Impressum",
@@ -79,7 +80,8 @@
         sub: "A screenshot, a scribble, or even just a muddled thought — whatever you've got is enough. I'll get back to you within two business days.",
         email: "hallo@reibisch.de",
         cta: "Say hello",
-        meta: "Usually answers within 48h"
+        meta: "Usually answers within 48h",
+        card: "Business card"
       },
       footer: %{
         impressum: "Imprint",
@@ -237,7 +239,7 @@
       <p class="contact-sub"><%= t.contact.sub %></p>
     </div>
     <div class="contact-bottom">
-      <a href={"mailto:#{t.contact.email}"} class="contact-email serif"><%= t.contact.email %></a>
+      <a href="/card" class="contact-card mono"><%= t.contact.card %> <span class="arrow">→</span></a>
       <a href={"mailto:#{t.contact.email}"} class="cta cta--sand">
         <%= t.contact.cta %> <span class="arrow">→</span>
       </a>
