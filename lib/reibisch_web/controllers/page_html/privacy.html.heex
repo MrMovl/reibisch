@@ -27,7 +27,7 @@
           body: "Sie haben das Recht auf Auskunft über Ihre gespeicherten Daten, deren Berichtigung, Löschung oder Einschränkung der Verarbeitung sowie das Recht auf Datenübertragbarkeit. Beschwerden können Sie bei der zuständigen Datenschutzaufsichtsbehörde einreichen. Anfragen richten Sie bitte an: hallo@reibisch.de"
         }
       ],
-      footer: %{colophon: "Norddeutschland · Festland & Küste", impressum: "Impressum", privacy: "Datenschutz"}
+      footer: %{impressum: "Impressum", privacy: "Datenschutz"}
     },
     "en" => %{
       nav: %{about: "About", work: "Work", contact: "Contact"},
@@ -53,7 +53,7 @@
           body: "You have the right to information about your stored data, its correction, deletion, or restriction of processing, as well as the right to data portability. Complaints may be submitted to the competent data protection supervisory authority. Please direct requests to: hallo@reibisch.de"
         }
       ],
-      footer: %{colophon: "Northern Germany · land & sea", impressum: "Imprint", privacy: "Privacy"}
+      footer: %{impressum: "Imprint", privacy: "Privacy"}
     }
   }
 
@@ -101,7 +101,7 @@
 
   <%# Footer %>
   <footer class="site-footer">
-    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch · <%= t.footer.colophon %></div>
+    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch</div>
     <div class="footer-links mono">
       <a href={t.impressum_url}><%= t.footer.impressum %></a>
       <a href={t.self_url}><%= t.footer.privacy %></a>
