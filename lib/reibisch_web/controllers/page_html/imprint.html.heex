@@ -1,5 +1,63 @@
 <%
+  lang = assigns[:lang] || "de"
   year = DateTime.utc_now().year
+
+  copy = %{
+    "de" => %{
+      nav: %{about: "Über mich", work: "Arbeit", contact: "Kontakt"},
+      home_url: "/",
+      self_url: "/impressum",
+      other_url: "/imprint",
+      title: "Impressum",
+      sections: [
+        %{
+          heading: "Angaben gemäß § 5 TMG",
+          body: {:address}
+        },
+        %{
+          heading: "Kontakt",
+          body: {:email}
+        },
+        %{
+          heading: "Umsatzsteuer-ID",
+          body: {:vat_de}
+        },
+        %{
+          heading: "Haftung für Inhalte",
+          body: {:text, "Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen."}
+        }
+      ],
+      footer: %{colophon: "Norddeutschland · Festland & Küste", impressum: "Impressum", privacy: "Datenschutz"}
+    },
+    "en" => %{
+      nav: %{about: "About", work: "Work", contact: "Contact"},
+      home_url: "/en",
+      self_url: "/imprint",
+      other_url: "/impressum",
+      title: "Legal Notice",
+      sections: [
+        %{
+          heading: "Information pursuant to § 5 TMG",
+          body: {:address}
+        },
+        %{
+          heading: "Contact",
+          body: {:email}
+        },
+        %{
+          heading: "VAT ID",
+          body: {:vat_en}
+        },
+        %{
+          heading: "Liability for Content",
+          body: {:text, "As a service provider, we are responsible for our own content on these pages in accordance with § 7 para. 1 TMG and general laws. Under §§ 8 to 10 TMG, we are not obligated to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity."}
+        }
+      ],
+      footer: %{colophon: "Northern Germany · land & sea", impressum: "Imprint", privacy: "Privacy"}
+    }
+  }
+
+  t = copy[lang]
 %>
 
 <div class="page">
@@ -7,7 +65,7 @@
   <%# Top bar %>
   <div class="top-bar">
     <div class="top-bar-brand mono">
-      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;">
+      <a href={t.home_url} style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;">
         <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0">
           <rect width="32" height="32" fill="#26465a" rx="4"/>
           <text x="16" y="21" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="20" fill="#eef2f1">R</text>
@@ -17,60 +75,58 @@
       </a>
     </div>
     <nav class="top-bar-nav">
-      <a href="/#about">Über mich</a>
-      <a href="/#services">Arbeit</a>
-      <a href="/#contact">Kontakt</a>
+      <a href={"#{t.home_url}#about"}><%= t.nav.about %></a>
+      <a href={"#{t.home_url}#services"}><%= t.nav.work %></a>
+      <a href={"#{t.home_url}#contact"}><%= t.nav.contact %></a>
     </nav>
     <nav class="lang-switch" aria-label="Language">
-      <a href="/">DE</a>
-      <a href="/en">EN</a>
+      <a href="/impressum" class={if lang == "de", do: "active", else: ""}>DE</a>
+      <a href="/imprint"   class={if lang == "en", do: "active", else: ""}>EN</a>
     </nav>
   </div>
 
   <%# Imprint content %>
   <main style="display:flex;justify-content:center;padding:80px 48px 120px;">
     <div style="max-width:60ch;width:100%;">
-      <h1 class="serif" style="font-size:42px;font-weight:350;line-height:1.05;color:var(--deep);letter-spacing:-0.015em;margin:0 0 48px;">Impressum</h1>
+      <h1 class="serif" style="font-size:42px;font-weight:350;line-height:1.05;color:var(--deep);letter-spacing:-0.015em;margin:0 0 48px;"><%= t.title %></h1>
 
-      <section style="margin-bottom:32px;">
-        <h2 class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin:0 0 12px;">Angaben gemäß § 5 TMG</h2>
-        <p style="font-size:17px;line-height:1.65;margin:0;">
-          Tomke Reibisch<br/>
-          Software &amp; Beratung<br/>
-          <span style="color:var(--soft);">[Straße und Hausnummer]</span><br/>
-          <span style="color:var(--soft);">[PLZ Ort]</span>
-        </p>
-      </section>
-
-      <section style="margin-bottom:32px;">
-        <h2 class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin:0 0 12px;">Kontakt</h2>
-        <p style="font-size:17px;line-height:1.65;margin:0;">
-          E-Mail: <a href="mailto:hallo@reibisch.de" style="color:var(--deep);text-decoration:none;border-bottom:1px solid var(--rule);">hallo@reibisch.de</a>
-        </p>
-      </section>
-
-      <section style="margin-bottom:32px;">
-        <h2 class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin:0 0 12px;">Umsatzsteuer-ID</h2>
-        <p style="font-size:17px;line-height:1.65;margin:0;color:var(--soft);">
-          [Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG, sofern vorhanden]
-        </p>
-      </section>
-
-      <section>
-        <h2 class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin:0 0 12px;">Haftung für Inhalte</h2>
-        <p style="font-size:17px;line-height:1.65;margin:0;">
-          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
-        </p>
-      </section>
+      <%= for section <- t.sections do %>
+        <section style="margin-bottom:32px;">
+          <h2 class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin:0 0 12px;"><%= section.heading %></h2>
+          <%= case section.body do %>
+            <% {:address} -> %>
+              <p style="font-size:17px;line-height:1.65;margin:0;">
+                Tomke Reibisch<br/>
+                Software &amp; Beratung<br/>
+                <span style="color:var(--soft);">[Straße und Hausnummer]</span><br/>
+                <span style="color:var(--soft);">[PLZ Ort]</span>
+              </p>
+            <% {:email} -> %>
+              <p style="font-size:17px;line-height:1.65;margin:0;">
+                E-Mail: <a href="mailto:hallo@reibisch.de" style="color:var(--deep);text-decoration:none;border-bottom:1px solid var(--rule);">hallo@reibisch.de</a>
+              </p>
+            <% {:vat_de} -> %>
+              <p style="font-size:17px;line-height:1.65;margin:0;color:var(--soft);">
+                [Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG, sofern vorhanden]
+              </p>
+            <% {:vat_en} -> %>
+              <p style="font-size:17px;line-height:1.65;margin:0;color:var(--soft);">
+                [VAT identification number pursuant to § 27a UStG, if applicable]
+              </p>
+            <% {:text, body} -> %>
+              <p style="font-size:17px;line-height:1.65;margin:0;"><%= body %></p>
+          <% end %>
+        </section>
+      <% end %>
     </div>
   </main>
 
   <%# Footer %>
   <footer class="site-footer">
-    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch · Norddeutschland · Festland & Küste</div>
+    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch · <%= t.footer.colophon %></div>
     <div class="footer-links mono">
-      <a href="/imprint">Impressum</a>
-      <a href="#">Datenschutz</a>
+      <a href={t.self_url}><%= t.footer.impressum %></a>
+      <a href="#"><%=  t.footer.privacy %></a>
     </div>
   </footer>
 

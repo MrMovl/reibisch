@@ -9,7 +9,11 @@ defmodule ReibischWeb.PageController do
     render(conn, :home, lang: "en")
   end
 
+  def impressum(conn, _params) do
+    render(conn, :imprint, lang: "de")
+  end
+
   def imprint(conn, _params) do
-    render(conn, :imprint)
+    render(conn, :imprint, lang: "en")
   end
 end
