@@ -1,0 +1,67 @@
+<%
+  wave_path = fn y_off, amp, period, width ->
+    points =
+      for x <- 0..width//4 do
+        y = y_off + :math.sin(x / period * :math.pi() * 2) * amp
+        "L #{x} #{Float.round(y, 2)}"
+      end
+    "M 0 #{y_off} " <> Enum.join(points, " ")
+  end
+
+  w1 = wave_path.(10, 3, 48, 580)
+  w2 = wave_path.(19, 3, 48, 580)
+  w3 = wave_path.(28, 3, 48, 580)
+%>
+<div class="card-page">
+  <div class="biz-card">
+    <div class="biz-card-top">
+      <div>
+        <p class="biz-card-name">Tomke Reibisch</p>
+        <hr class="biz-card-rule" />
+        <p class="biz-card-role">Entwickler &amp; Berater</p>
+      </div>
+      <div class="biz-card-logo">
+        <svg width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" fill="#26465a" rx="4"/>
+          <text x="16" y="21" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="20" fill="#eef2f1">R</text>
+          <path d="M 8 27 Q 12 24 16 27 T 24 27" fill="none" stroke="#c9b87a" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="biz-card-mid">
+      <a href="mailto:hallo@reibisch.de">hallo@reibisch.de</a>
+    </div>
+    <div class="biz-card-footer">
+      <div class="biz-card-waves" aria-hidden="true">
+        <div class="wave-drift wave-drift--fast">
+          <svg width="580" height="38" viewBox="0 0 580 38" aria-hidden="true">
+            <path d={w1} stroke="#26465a" stroke-width="1" fill="none" opacity="0.8" stroke-linecap="round"/>
+            <path d={w2} stroke="#26465a" stroke-width="1" fill="none" opacity="0.55" stroke-linecap="round"/>
+            <path d={w3} stroke="#26465a" stroke-width="1" fill="none" opacity="0.35" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="biz-card-bottom">
+        <a href="tel:+4915140037773" class="biz-card-phone">+49 151 40037773</a>
+        <span class="biz-card-url">www.reibisch.de</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-actions">
+    <a href="/downloads/tomke-reibisch-karte.png" download="tomke-reibisch-karte.png" class="card-btn">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 1v6.5M3.5 5.5L6 8l2.5-2.5"/>
+        <line x1="1" y1="11" x2="11" y2="11"/>
+      </svg>
+      PNG
+    </a>
+    <a href="/" class="card-back-link">www.reibisch.de</a>
+    <a href="/downloads/tomke-reibisch.vcf" download="tomke-reibisch.vcf" class="card-btn">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 1v6.5M3.5 5.5L6 8l2.5-2.5"/>
+        <line x1="1" y1="11" x2="11" y2="11"/>
+      </svg>
+      vCard
+    </a>
+  </div>
+</div>
