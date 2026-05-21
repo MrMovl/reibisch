@@ -40,7 +40,7 @@ _Stand: 2026-05-21_
 - Fließtext: Ich baue Software, seit das noch „Homepages" hieß. Heute heißt es Apps, APIs, Plattformen, Services — die Grundfrage bleibt: Was soll das Ding eigentlich tun? Ich höre zu, stelle die richtigen Fragen, und liefere etwas, das funktioniert. Pragmatisch, ohne Tüdelüt.
 - Punkte:
   1. Ich höre erst zu, dann baue ich.
-  2. Komplexität ist Schulden, keine Eleganz.
+  2. Gute Software altert langsam.
   3. Ihre Kund:innen denken nicht wie Sie. Gute Software kennt den Unterschied.
 
 **EN**
@@ -50,7 +50,7 @@ _Stand: 2026-05-21_
 - Body: I've been building software since we still called them "homepages". Now it's apps, APIs, platforms, services — the underlying question hasn't changed: what is this thing actually supposed to do? I listen, ask the right questions, and ship something that works. Pragmatic, no theatre.
 - Points:
   1. Listening first. Building second.
-  2. Complexity is debt, not elegance.
+  2. Good software ages slowly.
   3. Your end-users aren't you. It shows in the product.
 
 ---
