@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Tomke Reibisch
+N:Reibisch;Tomke;;;
+TITLE:Entwickler & Berater
+TEL;TYPE=CELL:+4915140037773
+EMAIL:hallo@reibisch.de
+URL:https://reibisch.de
+ADR;TYPE=WORK:;;Norddeutschland;;;;DE
+END:VCARD
