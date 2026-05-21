@@ -588,25 +588,27 @@
         line-height: 0;
         margin-bottom: 18px;
       }
-      .biz-card-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-      }
-      .biz-card-contact {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-      .biz-card-contact a,
-      .biz-card-contact span {
+      .biz-card-mid a {
         font-family: 'Geist Mono', monospace;
         font-size: 13px;
         letter-spacing: 0.04em;
         color: var(--deep);
         text-decoration: none;
       }
-      .biz-card-contact a:hover { text-decoration: underline; }
+      .biz-card-mid a:hover { text-decoration: underline; }
+      .biz-card-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .biz-card-phone {
+        font-family: 'Geist Mono', monospace;
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        color: var(--soft);
+        text-decoration: none;
+      }
+      .biz-card-phone:hover { color: var(--deep); }
       .biz-card-url {
         font-family: 'Geist Mono', monospace;
         font-size: 13px;
