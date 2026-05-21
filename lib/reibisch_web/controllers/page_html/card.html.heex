@@ -1,3 +1,17 @@
+<%
+  wave_path = fn y_off, amp, period, width ->
+    points =
+      for x <- 0..width//4 do
+        y = y_off + :math.sin(x / period * :math.pi() * 2) * amp
+        "L #{x} #{Float.round(y, 2)}"
+      end
+    "M 0 #{y_off} " <> Enum.join(points, " ")
+  end
+
+  w1 = wave_path.(10, 3, 48, 580)
+  w2 = wave_path.(19, 3, 48, 580)
+  w3 = wave_path.(28, 3, 48, 580)
+%>
 <div class="card-page">
   <div class="biz-card">
     <div class="biz-card-top">
@@ -14,11 +28,22 @@
         </svg>
       </div>
     </div>
-    <div class="biz-card-bottom">
-      <div class="biz-card-contact">
-        <a href="mailto:hallo@reibisch.de">hallo@reibisch.de</a>
+    <div class="biz-card-footer">
+      <div class="biz-card-waves" aria-hidden="true">
+        <div class="wave-drift wave-drift--fast">
+          <svg width="580" height="38" viewBox="0 0 580 38" aria-hidden="true">
+            <path d={w1} stroke="#26465a" stroke-width="1" fill="none" opacity="0.8" stroke-linecap="round"/>
+            <path d={w2} stroke="#26465a" stroke-width="1" fill="none" opacity="0.55" stroke-linecap="round"/>
+            <path d={w3} stroke="#26465a" stroke-width="1" fill="none" opacity="0.35" stroke-linecap="round"/>
+          </svg>
+        </div>
       </div>
-      <span class="biz-card-url">reibisch.de</span>
+      <div class="biz-card-bottom">
+        <div class="biz-card-contact">
+          <a href="mailto:hallo@reibisch.de">hallo@reibisch.de</a>
+        </div>
+        <span class="biz-card-url">reibisch.de</span>
+      </div>
     </div>
   </div>
   <a href="/" class="card-back-link">reibisch.de</a>
