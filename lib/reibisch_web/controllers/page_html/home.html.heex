@@ -251,7 +251,7 @@
     <div class="footer-copy mono">© <%= year %> · Tomke Reibisch · <%= t.footer.colophon %></div>
     <div class="footer-links mono">
       <a href={if lang == "de", do: "/impressum", else: "/imprint"}><%= t.footer.impressum %></a>
-      <a href="#"><%= t.footer.privacy %></a>
+      <a href={if lang == "de", do: "/datenschutz", else: "/privacy"}><%= t.footer.privacy %></a>
     </div>
   </footer>
 

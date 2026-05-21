@@ -1,0 +1,111 @@
+<%
+  lang = assigns[:lang] || "de"
+  year = DateTime.utc_now().year
+
+  copy = %{
+    "de" => %{
+      nav: %{about: "Über mich", work: "Arbeit", contact: "Kontakt"},
+      home_url: "/",
+      self_url: "/datenschutz",
+      impressum_url: "/impressum",
+      title: "Datenschutzerklärung",
+      sections: [
+        %{
+          heading: "Verantwortlicher",
+          body: "Tomke Reibisch, Software & Beratung, hallo@reibisch.de"
+        },
+        %{
+          heading: "Erhebung und Verarbeitung personenbezogener Daten",
+          body: "Diese Website erhebt keine personenbezogenen Daten durch Tracking, Cookies oder Analysetools. Beim Besuch der Website werden durch den Hosting-Anbieter technisch notwendige Server-Logdaten erfasst (IP-Adresse, Zeitstempel, aufgerufene Seite, Browser-Typ). Diese Daten werden ausschließlich zur Sicherstellung des Betriebs verwendet und nicht mit anderen Daten zusammengeführt."
+        },
+        %{
+          heading: "Kontaktaufnahme",
+          body: "Wenn Sie per E-Mail Kontakt aufnehmen, werden die übermittelten Daten (Name, E-Mail-Adresse, Nachrichteninhalt) ausschließlich zur Bearbeitung Ihrer Anfrage verarbeitet und nicht an Dritte weitergegeben."
+        },
+        %{
+          heading: "Ihre Rechte",
+          body: "Sie haben das Recht auf Auskunft über Ihre gespeicherten Daten, deren Berichtigung, Löschung oder Einschränkung der Verarbeitung sowie das Recht auf Datenübertragbarkeit. Beschwerden können Sie bei der zuständigen Datenschutzaufsichtsbehörde einreichen. Anfragen richten Sie bitte an: hallo@reibisch.de"
+        }
+      ],
+      footer: %{colophon: "Norddeutschland · Festland & Küste", impressum: "Impressum", privacy: "Datenschutz"}
+    },
+    "en" => %{
+      nav: %{about: "About", work: "Work", contact: "Contact"},
+      home_url: "/en",
+      self_url: "/privacy",
+      impressum_url: "/imprint",
+      title: "Privacy Policy",
+      sections: [
+        %{
+          heading: "Data Controller",
+          body: "Tomke Reibisch, Software & Consulting, hallo@reibisch.de"
+        },
+        %{
+          heading: "Collection and Processing of Personal Data",
+          body: "This website does not collect personal data through tracking, cookies, or analytics tools. When you visit the site, the hosting provider automatically records technically necessary server log data (IP address, timestamp, page accessed, browser type). This data is used solely to ensure operation and is not merged with any other data."
+        },
+        %{
+          heading: "Contact by Email",
+          body: "If you contact us by email, the transmitted data (name, email address, message content) is processed solely to handle your inquiry and is not passed on to third parties."
+        },
+        %{
+          heading: "Your Rights",
+          body: "You have the right to information about your stored data, its correction, deletion, or restriction of processing, as well as the right to data portability. Complaints may be submitted to the competent data protection supervisory authority. Please direct requests to: hallo@reibisch.de"
+        }
+      ],
+      footer: %{colophon: "Northern Germany · land & sea", impressum: "Imprint", privacy: "Privacy"}
+    }
+  }
+
+  t = copy[lang]
+%>
+
+<div class="page">
+
+  <%# Top bar %>
+  <div class="top-bar">
+    <div class="top-bar-brand mono">
+      <a href={t.home_url} style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;">
+        <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0">
+          <rect width="32" height="32" fill="#26465a" rx="4"/>
+          <text x="16" y="21" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="20" fill="#eef2f1">R</text>
+          <path d="M 8 27 Q 12 24 16 27 T 24 27" fill="none" stroke="#c9b87a" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span>· Software & Beratung</span>
+      </a>
+    </div>
+    <nav class="top-bar-nav">
+      <a href={"#{t.home_url}#about"}><%= t.nav.about %></a>
+      <a href={"#{t.home_url}#services"}><%= t.nav.work %></a>
+      <a href={"#{t.home_url}#contact"}><%= t.nav.contact %></a>
+    </nav>
+    <nav class="lang-switch" aria-label="Language">
+      <a href="/datenschutz" class={if lang == "de", do: "active", else: ""}>DE</a>
+      <a href="/privacy"     class={if lang == "en", do: "active", else: ""}>EN</a>
+    </nav>
+  </div>
+
+  <%# Privacy content %>
+  <main style="display:flex;justify-content:center;padding:80px 48px 120px;">
+    <div style="max-width:60ch;width:100%;">
+      <h1 class="serif" style="font-size:42px;font-weight:350;line-height:1.05;color:var(--deep);letter-spacing:-0.015em;margin:0 0 48px;"><%= t.title %></h1>
+
+      <%= for section <- t.sections do %>
+        <section style="margin-bottom:32px;">
+          <h2 class="mono" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin:0 0 12px;"><%= section.heading %></h2>
+          <p style="font-size:17px;line-height:1.65;margin:0;"><%= section.body %></p>
+        </section>
+      <% end %>
+    </div>
+  </main>
+
+  <%# Footer %>
+  <footer class="site-footer">
+    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch · <%= t.footer.colophon %></div>
+    <div class="footer-links mono">
+      <a href={t.impressum_url}><%= t.footer.impressum %></a>
+      <a href={t.self_url}><%= t.footer.privacy %></a>
+    </div>
+  </footer>
+
+</div>

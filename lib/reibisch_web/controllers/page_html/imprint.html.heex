@@ -8,6 +8,7 @@
       home_url: "/",
       self_url: "/impressum",
       other_url: "/imprint",
+      privacy_url: "/datenschutz",
       title: "Impressum",
       sections: [
         %{
@@ -34,6 +35,7 @@
       home_url: "/en",
       self_url: "/imprint",
       other_url: "/impressum",
+      privacy_url: "/privacy",
       title: "Legal Notice",
       sections: [
         %{
@@ -126,7 +128,7 @@
     <div class="footer-copy mono">© <%= year %> · Tomke Reibisch · <%= t.footer.colophon %></div>
     <div class="footer-links mono">
       <a href={t.self_url}><%= t.footer.impressum %></a>
-      <a href="#"><%=  t.footer.privacy %></a>
+      <a href={t.privacy_url}><%= t.footer.privacy %></a>
     </div>
   </footer>
 

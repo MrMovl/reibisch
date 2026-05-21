@@ -16,4 +16,12 @@ defmodule ReibischWeb.PageController do
   def imprint(conn, _params) do
     render(conn, :imprint, lang: "en")
   end
+
+  def datenschutz(conn, _params) do
+    render(conn, :privacy, lang: "de")
+  end
+
+  def privacy(conn, _params) do
+    render(conn, :privacy, lang: "en")
+  end
 end
