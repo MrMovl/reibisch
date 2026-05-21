@@ -520,6 +520,119 @@
 
 
       }
+
+      /* Business card page */
+      .card-page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background: var(--ink);
+        padding: 24px;
+      }
+      .biz-card {
+        width: 100%;
+        max-width: 440px;
+        aspect-ratio: 85 / 54;
+        background: var(--white-warm);
+        border-radius: 4px;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.45), 0 2px 6px rgba(0,0,0,0.2);
+        padding: 28px 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+      }
+      .biz-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .biz-card-logo {
+        flex-shrink: 0;
+      }
+      .biz-card-name {
+        font-family: 'Newsreader', serif;
+        font-weight: 350;
+        font-size: 30px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--deep);
+        margin: 0;
+      }
+      .biz-card-rule {
+        height: 1.5px;
+        background: var(--sand);
+        border: none;
+        margin: 10px 0 8px;
+        width: 100%;
+      }
+      .biz-card-role {
+        font-family: 'Geist Mono', monospace;
+        font-size: 10px;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--soft);
+        margin: 0;
+      }
+      .biz-card-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .biz-card-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .biz-card-contact a,
+      .biz-card-contact span {
+        font-family: 'Geist Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: var(--deep);
+        text-decoration: none;
+      }
+      .biz-card-contact a:hover { text-decoration: underline; }
+      .biz-card-url {
+        font-family: 'Geist Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: var(--soft);
+      }
+      .card-back-link {
+        font-family: 'Geist Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(238, 242, 241, 0.3);
+        text-decoration: none;
+      }
+      .card-back-link:hover { color: rgba(238, 242, 241, 0.6); }
+
+      @media print {
+        .card-page {
+          background: white;
+          min-height: 0;
+          padding: 0;
+          display: block;
+        }
+        .biz-card {
+          width: 85mm;
+          height: 54mm;
+          max-width: none;
+          aspect-ratio: auto;
+          box-shadow: none;
+          border: 0.5pt solid #ccc;
+          border-radius: 0;
+          padding: 7mm 9mm;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+        .card-back-link { display: none; }
+      }
     </style>
   </head>
   <body>

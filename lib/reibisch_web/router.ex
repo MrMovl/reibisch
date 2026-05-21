@@ -19,5 +19,6 @@ defmodule ReibischWeb.Router do
     get "/imprint", PageController, :imprint
     get "/datenschutz", PageController, :datenschutz
     get "/privacy", PageController, :privacy
+    get "/card", PageController, :card
   end
 end

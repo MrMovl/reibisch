@@ -24,4 +24,8 @@ defmodule ReibischWeb.PageController do
   def privacy(conn, _params) do
     render(conn, :privacy, lang: "en")
   end
+
+  def card(conn, _params) do
+    render(conn, :card)
+  end
 end
