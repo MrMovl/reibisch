@@ -37,7 +37,7 @@ _Stand: 2026-05-21_
 - Section-Label: Über
 - Name: Tomke Reibisch
 - Rolle: Entwickler & Berater · Norddeutschland
-- Fließtext: Ich baue Software, seit das noch „Homepages" hieß. Heute heißt es Apps, APIs, Plattformen — die Grundfrage bleibt: Was soll das Ding eigentlich tun? Ich höre zu, stelle ein paar unbequeme Fragen, und liefere etwas, das funktioniert. Pragmatisch, ohne Showeffekte.
+- Fließtext: Ich baue Software, seit das noch „Homepages" hieß. Heute heißt es Apps, APIs, Plattformen, Services — die Grundfrage bleibt: Was soll das Ding eigentlich tun? Ich höre zu, stelle die richtigen Fragen, und liefere etwas, das funktioniert. Pragmatisch, ohne Tüdelüt.
 - Punkte:
   1. Ich höre erst zu, dann baue ich.
   2. Komplexität ist Schulden, keine Eleganz.
@@ -47,7 +47,7 @@ _Stand: 2026-05-21_
 - Section-Label: About
 - Name: Tomke Reibisch
 - Role: Developer & consultant · Northern Germany
-- Body: I've been building software since we still called them "homepages". Now it's apps, APIs, platforms — the underlying question hasn't changed: what is this thing actually supposed to do? I listen, ask a few uncomfortable questions, and ship something that works. Pragmatic, no theatre.
+- Body: I've been building software since we still called them "homepages". Now it's apps, APIs, platforms, services — the underlying question hasn't changed: what is this thing actually supposed to do? I listen, ask the right questions, and ship something that works. Pragmatic, no theatre.
 - Points:
   1. Listening first. Building second.
   2. Complexity is debt, not elegance.
