@@ -419,15 +419,17 @@
         flex-wrap: wrap;
         gap: 16px;
       }
-      .contact-email {
-        font-family: 'Newsreader', serif;
-        font-weight: 350;
-        font-size: 38px;
+      .contact-card {
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
         color: var(--sand);
         text-decoration: none;
-        letter-spacing: -0.01em;
+        transition: opacity 0.2s ease;
       }
-      .contact-email:hover { text-decoration: underline; }
+      .contact-card .arrow { display: inline-block; transition: transform 0.3s ease; }
+      .contact-card:hover { opacity: 0.75; }
+      .contact-card:hover .arrow { transform: translateX(4px); }
 
       /* Footer */
       .site-footer {
@@ -514,7 +516,6 @@
           gap: 20px;
         }
         .contact-h2 { font-size: clamp(36px, 8vw, 68px); }
-        .contact-email { font-size: clamp(22px, 5vw, 38px); }
 
         .site-footer { padding: 16px 24px; flex-direction: column; gap: 12px; align-items: flex-start; }
 

@@ -28,7 +28,7 @@
           body: {:text, "Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen."}
         }
       ],
-      footer: %{colophon: "Norddeutschland · Festland & Küste", impressum: "Impressum", privacy: "Datenschutz"}
+      footer: %{impressum: "Impressum", privacy: "Datenschutz"}
     },
     "en" => %{
       nav: %{about: "About", work: "Work", contact: "Contact"},
@@ -55,7 +55,7 @@
           body: {:text, "As a service provider, we are responsible for our own content on these pages in accordance with § 7 para. 1 TMG and general laws. Under §§ 8 to 10 TMG, we are not obligated to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity."}
         }
       ],
-      footer: %{colophon: "Northern Germany · land & sea", impressum: "Imprint", privacy: "Privacy"}
+      footer: %{impressum: "Imprint", privacy: "Privacy"}
     }
   }
 
@@ -125,7 +125,7 @@
 
   <%# Footer %>
   <footer class="site-footer">
-    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch · <%= t.footer.colophon %></div>
+    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch</div>
     <div class="footer-links mono">
       <a href={t.self_url}><%= t.footer.impressum %></a>
       <a href={t.privacy_url}><%= t.footer.privacy %></a>
