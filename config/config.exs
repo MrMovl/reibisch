@@ -8,7 +8,7 @@ config :reibisch, ReibischWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Reibisch.PubSub,
-  live_view: [signing_salt: "tQ3HYlkX"]
+  live_view: [signing_salt: "UUgB3/7A2CP9ho8ZseEuhQ"]
 
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

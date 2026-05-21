@@ -4,7 +4,7 @@ defmodule ReibischWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_reibisch_key",
-    signing_salt: "abcdefgh",
+    signing_salt: "bZJqBIeJqiqMeIF7TfnqxQ",
     same_site: "Lax"
   ]
 
@@ -13,7 +13,7 @@ defmodule ReibischWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :reibisch,
-    gzip: false,
+    gzip: true,
     only: ReibischWeb.static_paths()
 
   if code_reloading? do
