@@ -20,13 +20,13 @@ _Stand: 2026-05-21_
 **DE**
 - Eyebrow: `Software · Apps · Beratung`
 - Headline: **Was klemmt?**
-- Subtext: Erzählen Sie mir, woran Sie hängen — was unklar ist, was schief läuft, was noch nie jemand so richtig erklärt hat. Ich höre zu, frage nach, und wir finden gemeinsam einen Weg, der zu Ihnen passt.
+- Subtext: Sagen Sie mir, wo es hakt — ob klares Problem oder vage Ahnung. Sie kennen Ihr Problem, ich kümmere mich um die Technik. Ich stelle die richtigen Fragen, und dann lösen wir es.
 - CTA: Schreiben Sie mir
 
 **EN**
 - Eyebrow: `Software · Apps · Consulting`
 - Headline: **What's stuck?**
-- Subtext: Tell me where you're stuck — what's confusing, what's slipping, what no one has explained properly. I'll listen, ask a few questions, and we'll find a way forward that actually fits.
+- Subtext: Tell me where it's stuck — whether it's a clear problem or just a vague hunch. You know your problem, I handle the tech. I ask the right questions, and then we solve it.
 - CTA: Send me a note
 
 ---
