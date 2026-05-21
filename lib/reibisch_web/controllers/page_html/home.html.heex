@@ -40,7 +40,6 @@
         meta: "Antwort meist innerhalb 48h"
       },
       footer: %{
-        colophon: "Norddeutschland · Festland & Küste",
         impressum: "Impressum",
         privacy: "Datenschutz"
       }
@@ -83,7 +82,6 @@
         meta: "Usually answers within 48h"
       },
       footer: %{
-        colophon: "Northern Germany · land & sea",
         impressum: "Imprint",
         privacy: "Privacy"
       }
@@ -248,7 +246,7 @@
 
   <%# Footer %>
   <footer class="site-footer">
-    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch · <%= t.footer.colophon %></div>
+    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch</div>
     <div class="footer-links mono">
       <a href={if lang == "de", do: "/impressum", else: "/imprint"}><%= t.footer.impressum %></a>
       <a href={if lang == "de", do: "/datenschutz", else: "/privacy"}><%= t.footer.privacy %></a>
