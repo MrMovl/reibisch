@@ -170,11 +170,11 @@
     </div>
   </div>
 
-  <%# About %>
-  <section id="about" class="sec about" aria-labelledby="about-heading">
+  <%# Services %>
+  <section id="services" class="sec services" aria-labelledby="services-heading">
     <div class="sec-label">
       <div class="section-label serif">
-        <span class="section-label-mark mono">01</span><%= t.about.section %>
+        <span class="section-label-mark mono">01</span><%= t.services.section %>
       </div>
     </div>
     <div class="sec-content">
@@ -184,6 +184,24 @@
           <path d={echo_p} stroke="#26465a" stroke-width="1" fill="none" stroke-linecap="round"/>
         </svg>
       </div>
+      <h2 id="services-heading" class="services-h2 serif"><%= t.services.title %></h2>
+      <%= for s <- t.services.items do %>
+        <div class="service-row">
+          <div class="service-name serif"><%= s.name %></div>
+          <div class="service-body"><%= s.body %></div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <%# About %>
+  <section id="about" class="sec about" aria-labelledby="about-heading">
+    <div class="sec-label">
+      <div class="section-label serif">
+        <span class="section-label-mark mono">02</span><%= t.about.section %>
+      </div>
+    </div>
+    <div class="sec-content">
       <div class="about-block">
         <div id="about-heading" class="about-name serif"><%= t.about.title %></div>
         <div class="about-role mono"><%= t.about.role %></div>
@@ -197,24 +215,6 @@
           </li>
         <% end %>
       </ul>
-    </div>
-  </section>
-
-  <%# Services %>
-  <section id="services" class="sec services" aria-labelledby="services-heading">
-    <div class="sec-label">
-      <div class="section-label serif">
-        <span class="section-label-mark mono">02</span><%= t.services.section %>
-      </div>
-    </div>
-    <div class="sec-content">
-      <h2 id="services-heading" class="services-h2 serif"><%= t.services.title %></h2>
-      <%= for s <- t.services.items do %>
-        <div class="service-row">
-          <div class="service-name serif"><%= s.name %></div>
-          <div class="service-body"><%= s.body %></div>
-        </div>
-      <% end %>
     </div>
   </section>
 
