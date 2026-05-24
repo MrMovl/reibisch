@@ -119,8 +119,6 @@
   cb_p3 = wave_path.(76,  6, 80, 1400)
   cb_p4 = wave_path.(104, 6, 80, 1400)
 
-  # Ghost wave echo — bleeds into the top of the About section
-  echo_p = wave_path.(8, 3, 80, 1400)
 %>
 
 <div class="page">
@@ -178,12 +176,6 @@
       </div>
     </div>
     <div class="sec-content">
-      <%# Ghost wave echo from separator above %>
-      <div class="ghost-wave" aria-hidden="true">
-        <svg width="1400" height="16" viewBox="0 0 1400 16" preserveAspectRatio="none">
-          <path d={echo_p} stroke="#26465a" stroke-width="1" fill="none" stroke-linecap="round"/>
-        </svg>
-      </div>
       <h2 id="services-heading" class="services-h2 serif"><%= t.services.title %></h2>
       <%= for s <- t.services.items do %>
         <div class="service-row">
