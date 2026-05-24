@@ -6,7 +6,7 @@
       nav: %{work: "Arbeit", about: "Über mich", contact: "Kontakt"},
       hero: %{
         eyebrow: "Software · Apps · Beratung",
-        question: "Was klemmt?",
+        question: "Tomke Reibisch · Software & Beratung",
         sub: "Sagen Sie mir, wo es hakt — ob klares Problem oder vage Ahnung. Sie kennen Ihr Problem, ich kümmere mich um die Technik. Ich stelle die richtigen Fragen, und dann lösen wir es.",
         cta: "Schreiben Sie mir"
       },
@@ -14,11 +14,11 @@
         section: "Über",
         title: "Tomke Reibisch",
         role: "Entwickler & Berater · Norddeutschland",
-        body: "Ich baue Software, seit das noch \"Homepages\" hieß. Heute heißt es Apps, APIs, Plattformen, Services — die Grundfrage bleibt: Was soll das Ding eigentlich tun? Ich höre zu, stelle die richtigen Fragen, und liefere etwas, das funktioniert. Pragmatisch, ohne Tüdelüt.",
+        body: "Ich baue Dinge fürs Web, seit Websites noch „Homepages\" hießen. Heute heißt es Apps, APIs, Plattformen, Services — die Grundfrage bleibt: Was soll das Ding eigentlich tun? Ich höre zu, stelle die richtigen Fragen, und liefere etwas, das funktioniert. Pragmatisch, ohne Tüdelüt.",
         points: [
-          "Ich höre erst zu, dann baue ich.",
-          "Gute Software altert langsam.",
-          "Ihre Kund:innen denken nicht wie Sie. Gute Software kennt den Unterschied."
+          "Sie bekommen keine Lösung, bevor ich Ihr Problem nicht in Gänze verstanden habe.",
+          "Was ich baue, soll lange halten — nicht nur beim Launch gut aussehen.",
+          "Meine besten Projekte entstehen, wenn ich mit jemandem rede, der das große Ganze noch selbst im Kopf hat."
         ]
       },
       services: %{
@@ -49,7 +49,7 @@
       nav: %{work: "Work", about: "About", contact: "Contact"},
       hero: %{
         eyebrow: "Software · Apps · Consulting",
-        question: "What's stuck?",
+        question: "Tomke Reibisch · Software & Consulting",
         sub: "Tell me where it's stuck — whether it's a clear problem or just a vague hunch. You know your problem, I handle the tech. I ask the right questions, and then we solve it.",
         cta: "Send me a note"
       },
@@ -57,11 +57,11 @@
         section: "About",
         title: "Tomke Reibisch",
         role: "Developer & consultant · Northern Germany",
-        body: "I’ve been building software since we still called them \"homepages\". Now it’s apps, APIs, platforms, services — the underlying question hasn’t changed: what is this thing actually supposed to do? I listen, ask the right questions, and ship something that works. Pragmatic, no theatre.",
+        body: "I’ve been building things for the web since websites were still called \"homepages\". Now it’s apps, APIs, platforms, services — the underlying question hasn’t changed: what is this thing actually supposed to do? I listen, ask the right questions, and deliver something that works. Pragmatic, no theatre.",
         points: [
-          "Listening first. Building second.",
-          "Good software ages slowly.",
-          "Your end-users aren't you. It shows in the product."
+          "You won’t get a solution until I’ve fully understood your problem.",
+          "What I build should last — not just look good at launch.",
+          "My best projects happen when I’m talking to someone who still has the full picture in their head."
         ]
       },
       services: %{
@@ -119,8 +119,6 @@
   cb_p3 = wave_path.(76,  6, 80, 1400)
   cb_p4 = wave_path.(104, 6, 80, 1400)
 
-  # Ghost wave echo — bleeds into the top of the About section
-  echo_p = wave_path.(8, 3, 80, 1400)
 %>
 
 <div class="page">
@@ -133,7 +131,6 @@
         <text x="16" y="21" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="20" fill="#eef2f1">R</text>
         <path d="M 8 27 Q 12 24 16 27 T 24 27" fill="none" stroke="#c9b87a" stroke-width="1.6" stroke-linecap="round"/>
       </svg>
-      <span>· Software & Beratung</span>
     </div>
     <nav class="top-bar-nav">
       <a href="#about"><%= t.nav.about %></a>
@@ -171,20 +168,32 @@
     </div>
   </div>
 
+  <%# Services %>
+  <section id="services" class="sec services" aria-labelledby="services-heading">
+    <div class="sec-label">
+      <div class="section-label serif">
+        <span class="section-label-mark mono">01</span><%= t.services.section %>
+      </div>
+    </div>
+    <div class="sec-content">
+      <h2 id="services-heading" class="services-h2 serif"><%= t.services.title %></h2>
+      <%= for s <- t.services.items do %>
+        <div class="service-row">
+          <div class="service-name serif"><%= s.name %></div>
+          <div class="service-body"><%= s.body %></div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
   <%# About %>
   <section id="about" class="sec about" aria-labelledby="about-heading">
     <div class="sec-label">
       <div class="section-label serif">
-        <span class="section-label-mark mono">01</span><%= t.about.section %>
+        <span class="section-label-mark mono">02</span><%= t.about.section %>
       </div>
     </div>
     <div class="sec-content">
-      <%# Ghost wave echo from separator above %>
-      <div class="ghost-wave" aria-hidden="true">
-        <svg width="1400" height="16" viewBox="0 0 1400 16" preserveAspectRatio="none">
-          <path d={echo_p} stroke="#26465a" stroke-width="1" fill="none" stroke-linecap="round"/>
-        </svg>
-      </div>
       <div class="about-block">
         <div id="about-heading" class="about-name serif"><%= t.about.title %></div>
         <div class="about-role mono"><%= t.about.role %></div>
@@ -198,24 +207,6 @@
           </li>
         <% end %>
       </ul>
-    </div>
-  </section>
-
-  <%# Services %>
-  <section id="services" class="sec services" aria-labelledby="services-heading">
-    <div class="sec-label">
-      <div class="section-label serif">
-        <span class="section-label-mark mono">02</span><%= t.services.section %>
-      </div>
-    </div>
-    <div class="sec-content">
-      <h2 id="services-heading" class="services-h2 serif"><%= t.services.title %></h2>
-      <%= for s <- t.services.items do %>
-        <div class="service-row">
-          <div class="service-name serif"><%= s.name %></div>
-          <div class="service-body"><%= s.body %></div>
-        </div>
-      <% end %>
     </div>
   </section>
 
