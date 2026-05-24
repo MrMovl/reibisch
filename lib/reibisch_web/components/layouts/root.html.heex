@@ -112,12 +112,12 @@
       .hero-h1 {
         font-family: 'Newsreader', serif;
         font-weight: 350;
-        font-size: 104px;
-        line-height: 0.96;
-        letter-spacing: -0.028em;
+        font-size: clamp(36px, 4.4vw, 58px);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
         margin: 0;
         color: var(--deep);
-        max-width: 14ch;
+        white-space: nowrap;
       }
       .hero-row {
         display: grid;
@@ -506,7 +506,7 @@
         .top-bar-nav { display: none; }
 
         .hero { padding: 40px 24px 32px; }
-        .hero-h1 { font-size: clamp(52px, 10vw, 104px); }
+        .hero-h1 { font-size: clamp(28px, 7vw, 42px); white-space: normal; }
         .hero-row {
           grid-template-columns: 1fr;
           gap: 28px;
