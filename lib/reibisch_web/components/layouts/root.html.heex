@@ -184,21 +184,53 @@
         transform: translateY(-1px);
       }
 
-      /* Wave separator */
+      /* Wave separator — fade at edges, halved opacity */
       .wave-sep {
         overflow: hidden;
-        margin-top: 8px;
+        margin-top: 24px;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16%, black 84%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 16%, black 84%, transparent 100%);
       }
-      .wave-drift {
-        color: var(--deep);
+      .wave-sep svg path { opacity: 0.5; }
+      .wave-drift { color: var(--deep); }
+      /* Ghost wave: single faint line that bleeds into the section below the separator */
+      .ghost-wave {
+        position: absolute;
+        top: -14px;
+        left: 0;
+        right: 0;
+        height: 16px;
+        pointer-events: none;
       }
+      .ghost-wave svg {
+        width: 100%;
+        height: 16px;
+        opacity: 0.18;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28%, black 72%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 28%, black 72%, transparent 100%);
+      }
+
+      /* Master section grid: 200px label · 48px gap · 1fr content
+         About, Services and Contact all share this so every heading
+         and body line starts at the same x (296px from the page edge). */
+      .sec {
+        padding: 0 48px;
+        display: grid;
+        grid-template-columns: 200px 48px 1fr;
+      }
+      .sec > .sec-label { grid-column: 1 / 2; }
+      .sec > .sec-content { grid-column: 3 / 4; min-width: 0; }
 
       /* About */
       .about {
-        padding: 56px 48px 56px;
+        padding-top: 56px;
+        padding-bottom: 56px;
+      }
+      .about .sec-content {
         display: grid;
-        grid-template-columns: 200px 1fr 1fr;
-        gap: 48px;
+        grid-template-columns: 1.1fr 1fr;
+        column-gap: 48px;
+        position: relative;
       }
       .section-label {
         font-family: 'Newsreader', serif;
@@ -252,12 +284,16 @@
         flex-direction: column;
         gap: 18px;
       }
-      .about-point {
+      .about-point { /* layout provided by .hangs */ }
+      /* Hanging marker: pulls the number glyph left into the 48px master gap */
+      .hangs {
+        margin-left: -44px;
         display: grid;
-        grid-template-columns: 32px 1fr;
-        gap: 12px;
+        grid-template-columns: 32px 12px 1fr;
         align-items: baseline;
       }
+      .hangs > .mark { grid-column: 1 / 2; text-align: right; }
+      .hangs > .txt  { grid-column: 3 / 4; }
       .about-point-num {
         font-family: 'Geist Mono', monospace;
         font-size: 11px;
@@ -273,52 +309,37 @@
         font-style: italic;
       }
 
-      /* Services */
+      /* Services — label in .sec-label, h2 + rows in .sec-content */
       .services {
-        padding: 56px 48px 64px;
+        padding-top: 56px;
+        padding-bottom: 64px;
         border-top: 1px solid var(--rule);
       }
-      .services-header {
-        display: grid;
-        grid-template-columns: 200px 1fr auto;
-        gap: 48px;
-        align-items: baseline;
-        margin-bottom: 24px;
+      .services .sec-content {
+        display: flex;
+        flex-direction: column;
       }
       .services-h2 {
         font-family: 'Newsreader', serif;
         font-weight: 350;
         font-size: 48px;
-        margin: 0;
+        margin: 0 0 28px;
         line-height: 1;
         color: var(--deep);
         letter-spacing: -0.02em;
-      }
-      .services-count {
-        font-family: 'Geist Mono', monospace;
-        font-size: 12px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--soft);
       }
       .service-row {
         padding: 24px 0;
         border-top: 1px solid var(--rule);
         display: grid;
-        grid-template-columns: 20px 1fr 1.6fr;
-        gap: 28px;
+        grid-template-columns: 1fr 1.6fr;
+        column-gap: 48px;
         align-items: start;
         transition: padding-left 0.25s ease;
       }
       .service-row:last-child { border-bottom: 1px solid var(--rule); }
       .service-row:hover { padding-left: 8px; }
-      .service-num {
-        font-family: 'Geist Mono', monospace;
-        font-size: 11px;
-        color: var(--soft);
-        padding-top: 8px;
-        letter-spacing: 0.04em;
-      }
+      /* "~" marker hangs in the 48px master gap, same rail as about-point numbers */
       .service-name {
         font-family: 'Newsreader', serif;
         font-weight: 350;
@@ -326,6 +347,19 @@
         line-height: 1.15;
         letter-spacing: -0.01em;
         color: var(--deep);
+        position: relative;
+      }
+      .service-name::before {
+        content: "~";
+        position: absolute;
+        right: calc(100% + 12px);
+        top: 6px;
+        width: 32px;
+        text-align: right;
+        font-family: 'Geist Mono', monospace;
+        font-size: 11px;
+        color: var(--soft);
+        letter-spacing: 0.04em;
       }
       .service-body {
         font-size: 15px;
@@ -333,27 +367,17 @@
         color: var(--ink);
         max-width: 42ch;
       }
-      .service-arrow {
-        font-family: 'Geist Mono', monospace;
-        font-size: 14px;
-        color: var(--sand-deep);
-        padding-top: 8px;
-        text-align: right;
-        transition: transform 0.25s ease, color 0.25s ease;
-      }
-      .service-row:hover .service-arrow {
-        transform: translateX(4px);
-        color: var(--deep);
-      }
 
-      /* Contact band */
+      /* Contact band — horizontal padding from .sec, vertical own */
       .contact {
-        padding: 64px 48px 48px;
+        padding-top: 64px;
+        padding-bottom: 48px;
         background: var(--deep);
         color: var(--paper);
         position: relative;
         overflow: hidden;
       }
+      .contact .sec-content { position: relative; }
       .contact-waves {
         position: absolute;
         inset: 0;
@@ -489,28 +513,29 @@
           margin-top: 24px;
         }
 
-        .wave-sep svg { width: calc(100% + 80px); }
+        .wave-sep { margin-top: 8px; }
+        .wave-sep svg { width: calc(100% + 48px); }
 
-        .about {
+        /* Collapse master grid to single column */
+        .sec {
           grid-template-columns: 1fr;
-          padding: 40px 24px;
-          gap: 32px;
+          padding: 0 24px;
+          gap: 20px;
         }
+        .sec > .sec-label { grid-column: 1; }
+        .sec > .sec-content { grid-column: 1; }
+
+        .about { padding-top: 40px; padding-bottom: 40px; }
+        .about .sec-content { grid-template-columns: 1fr; gap: 24px; }
         .about-points { padding-top: 0; }
+        .hangs { margin-left: 0; }
 
-        .services { padding: 40px 24px 48px; }
-        .services-header {
-          grid-template-columns: 1fr;
-          gap: 12px;
-          margin-bottom: 16px;
-        }
-        .service-row {
-          grid-template-columns: 40px 1fr 36px;
-          gap: 16px;
-        }
+        .services { padding-top: 40px; padding-bottom: 48px; }
+        .service-row { grid-template-columns: 1fr; gap: 8px; }
+        .service-name::before { display: none; }
         .service-body { display: none; }
 
-        .contact { padding: 48px 24px 36px; }
+        .contact { padding-top: 48px; padding-bottom: 36px; }
         .contact-row {
           grid-template-columns: 1fr;
           gap: 20px;
@@ -518,8 +543,6 @@
         .contact-h2 { font-size: clamp(36px, 8vw, 68px); }
 
         .site-footer { padding: 16px 24px; flex-direction: column; gap: 12px; align-items: flex-start; }
-
-
       }
 
       /* Business card page */
