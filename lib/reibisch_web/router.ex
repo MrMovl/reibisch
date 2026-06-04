@@ -2,6 +2,7 @@ defmodule ReibischWeb.Router do
   use ReibischWeb, :router
 
   pipeline :browser do
+    plug ReibischWeb.MaintenancePlug
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
