@@ -4,7 +4,7 @@ defmodule ReibischWeb.MaintenancePlug do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    if Application.get_env(:reibisch, :maintenance_mode, false) do
+    if Application.get_env(:reibisch, :maintenance_mode, false) and conn.request_path != "/card" do
       file = Application.app_dir(:reibisch, "priv/static/index.html")
 
       conn
