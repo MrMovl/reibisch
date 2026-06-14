@@ -38,7 +38,8 @@
         email: "reibisch@proton.me",
         cta: "Erste Nachricht",
         meta: "Antwort meist innerhalb 48h",
-        card: "Visitenkarte"
+        card: "Visitenkarte",
+        github: "GitHub"
       },
       footer: %{
         impressum: "Impressum",
@@ -81,7 +82,8 @@
         email: "reibisch@proton.me",
         cta: "Send a message",
         meta: "Usually answers within 48h",
-        card: "Business card"
+        card: "Business card",
+        github: "GitHub"
       },
       footer: %{
         impressum: "Imprint",
@@ -245,6 +247,7 @@
       </div>
       <div class="contact-bottom">
         <a href="/card" class="contact-card mono"><%= t.contact.card %> <span class="arrow">→</span></a>
+        <a href="https://github.com/MrMovl" class="contact-card mono" target="_blank" rel="noopener noreferrer"><%= t.contact.github %> <span class="arrow">→</span></a>
         <a href={"mailto:#{t.contact.email}"} class="cta cta--sand">
           <%= t.contact.cta %> <span class="arrow">→</span>
         </a>
