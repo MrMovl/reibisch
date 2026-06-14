@@ -1,10 +1,17 @@
 name: CI + Deploy
 
+# Automatic triggers disabled — no push/PR runs until self-hosted runner is set up on the Pi.
+# To activate: replace workflow_dispatch with the push/pull_request block below and
+# register the runner on the Pi (GitHub → Settings → Actions → Runners → New self-hosted runner).
+#
+# on:
+#   push:
+#     branches: ["**"]
+#   pull_request:
+#     branches: ["main"]
+
 on:
-  push:
-    branches: ["**"]
-  pull_request:
-    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -45,24 +52,12 @@ jobs:
 
   deploy:
     name: Deploy
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: test
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     steps:
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+      - uses: actions/checkout@v4
 
-      - name: Deploy to VPS
-        env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-        run: |
-          TARGET="${DEPLOY_PATH:-/opt/reibisch}"
-          ssh -i ~/.ssh/deploy_key "$SSH_USER@$SSH_HOST" \
-            "cd $TARGET && git pull origin main && docker compose up --build -d --remove-orphans"
+      - name: Rebuild and restart
+        run: docker compose up --build -d --remove-orphans
