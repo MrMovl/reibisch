@@ -678,5 +678,24 @@
   </head>
   <body>
     <%= @inner_content %>
+    <script>
+      (function () {
+        var wave = [
+          "    _     _     _     _     _     _  ",
+          "___/ \\___/ \\___/ \\___/ \\___/ \\___/ \\_",
+          "  _     _     _     _     _     _    ",
+          "_/ \\___/ \\___/ \\___/ \\___/ \\___/ \\__",
+          "      _     _     _     _     _      ",
+          "_____/ \\___/ \\___/ \\___/ \\___/ \\____"
+        ].join("\n");
+        console.log("%c" + wave, "color:#26465a;font-family:monospace;line-height:1.6");
+        console.log("%cIn case you’re wondering, it’s Elixir.", "color:#26465a;font-family:monospace;font-size:12px;");
+        console.log(
+          "%cGood to see you here.\nIf you’re curious about the stack or want to work together, drop me a line:\n%creibisch@proton.me",
+          "color:#9f8a4e;font-family:monospace;font-size:13px;line-height:1.7",
+          "color:#c9b87a;font-family:monospace;font-size:13px;line-height:1.7"
+        );
+      })();
+    </script>
   </body>
 </html>
