@@ -3,7 +3,7 @@
 
   copy = %{
     "de" => %{
-      nav: %{work: "Leistungen", about: "Über mich", contact: "Kontakt"},
+      nav: %{work: "Leistungen", about: "Über mich", contact: "Kontakt", projects: "Projekte"},
       hero: %{
         eyebrow: "Software · Apps · Beratung",
         question: "Tomke Reibisch · Software & Beratung",
@@ -46,7 +46,7 @@
       }
     },
     "en" => %{
-      nav: %{work: "Services", about: "About", contact: "Contact"},
+      nav: %{work: "Services", about: "About", contact: "Contact", projects: "Projects"},
       hero: %{
         eyebrow: "Software · Apps · Consulting",
         question: "Tomke Reibisch · Software & Consulting",
@@ -135,6 +135,7 @@
     <nav class="top-bar-nav">
       <a href="#about"><%= t.nav.about %></a>
       <a href="#services"><%= t.nav.work %></a>
+      <a href={if lang == "de", do: "/projekte", else: "/projects"}><%= t.nav.projects %></a>
       <a href="#contact"><%= t.nav.contact %></a>
     </nav>
     <nav class="lang-switch" aria-label="Language">

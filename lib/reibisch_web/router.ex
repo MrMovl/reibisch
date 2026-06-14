@@ -21,5 +21,7 @@ defmodule ReibischWeb.Router do
     get "/datenschutz", PageController, :datenschutz
     get "/privacy", PageController, :privacy
     get "/card", PageController, :card
+    get "/projekte", PageController, :projekte
+    get "/projects", PageController, :projects
   end
 end

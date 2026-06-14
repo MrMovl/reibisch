@@ -28,4 +28,12 @@ defmodule ReibischWeb.PageController do
   def card(conn, _params) do
     render(conn, :card)
   end
+
+  def projekte(conn, _params) do
+    render(conn, :projekte, lang: "de")
+  end
+
+  def projects(conn, _params) do
+    render(conn, :projekte, lang: "en")
+  end
 end

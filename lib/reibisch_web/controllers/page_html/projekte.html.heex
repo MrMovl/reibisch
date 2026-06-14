@@ -1,0 +1,120 @@
+<%
+  lang = assigns[:lang] || "de"
+  year = DateTime.utc_now().year
+
+  copy = %{
+    "de" => %{
+      nav: %{projects: "Projekte", work: "Leistungen", about: "Über mich", contact: "Kontakt"},
+      home_url: "/",
+      other_url: "/projects",
+      section: "Projekte",
+      title: "Ausgewählte Projekte",
+      client_label: "Kundenprojekte",
+      clients: [
+        %{
+          tag: "01",
+          name: "Bildungsplattform",
+          meta: "Bildung",
+          body: "Lernplattform für Grundschulkinder — Video-Inhalte, altersgerechte Oberfläche, täglich im Schulbetrieb im Einsatz."
+        },
+        %{
+          tag: "02",
+          name: "Tourismus-Apps",
+          meta: "Tourismus · mehrere Projekte",
+          body: "Progressive Web Apps für mehrere Tourismusbetriebe — mobil-first, offline-fähig, lokale Inhalte für unterschiedliche Kunden."
+        }
+        # Eigene Projekte folgen — gleiche Struktur:
+        # %{tag: "01", name: "Projektname", meta: "Kategorie", body: "Beschreibung."}
+      ],
+      # personal_label: "Eigene Projekte",
+      # personal: [],
+      footer: %{impressum: "Impressum", privacy: "Datenschutz"}
+    },
+    "en" => %{
+      nav: %{projects: "Projects", work: "Services", about: "About", contact: "Contact"},
+      home_url: "/en",
+      other_url: "/projekte",
+      section: "Projects",
+      title: "Selected projects",
+      client_label: "Client work",
+      clients: [
+        %{
+          tag: "01",
+          name: "Education platform",
+          meta: "Education",
+          body: "Learning platform for primary school children — video content, age-appropriate interface, in daily use in schools."
+        },
+        %{
+          tag: "02",
+          name: "Tourism apps",
+          meta: "Tourism · multiple projects",
+          body: "Progressive web apps for several tourism businesses — mobile-first, offline-capable, local content for different clients."
+        }
+        # Own projects to follow — same structure:
+        # %{tag: "01", name: "Project name", meta: "Category", body: "Description."}
+      ],
+      # personal_label: "Own projects",
+      # personal: [],
+      footer: %{impressum: "Imprint", privacy: "Privacy"}
+    }
+  }
+
+  t = copy[lang]
+%>
+
+<div class="page">
+
+  <%# Top bar %>
+  <div class="top-bar">
+    <div class="top-bar-brand mono">
+      <a href={t.home_url} aria-label="Startseite">
+        <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0">
+          <rect width="32" height="32" fill="#26465a" rx="4"/>
+          <text x="16" y="21" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="20" fill="#eef2f1">R</text>
+          <path d="M 8 27 Q 12 24 16 27 T 24 27" fill="none" stroke="#c9b87a" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+    <nav class="top-bar-nav">
+      <a href={"#{t.home_url}#about"}><%= t.nav.about %></a>
+      <a href={"#{t.home_url}#services"}><%= t.nav.work %></a>
+      <a href="/projekte" class={if lang == "de", do: "active", else: ""}><%= t.nav.projects %></a>
+      <a href={"#{t.home_url}#contact"}><%= t.nav.contact %></a>
+    </nav>
+    <nav class="lang-switch" aria-label="Language">
+      <a href="/projekte" class={if lang == "de", do: "active", else: ""}>DE</a>
+      <a href="/projects" class={if lang == "en", do: "active", else: ""}>EN</a>
+    </nav>
+  </div>
+
+  <%# Projects section %>
+  <section class="sec projects" aria-labelledby="projects-heading">
+    <div class="sec-label">
+      <div class="section-label serif">
+        <span class="section-label-mark mono">01</span><%= t.client_label %>
+      </div>
+    </div>
+    <div class="sec-content">
+      <h1 id="projects-heading" class="services-h2 serif"><%= t.title %></h1>
+      <%= for p <- t.clients do %>
+        <div class="service-row">
+          <div class="service-name serif">
+            <%= p.name %>
+            <div class="about-role mono" style="font-size:0.72rem;margin-top:0.2em"><%= p.meta %></div>
+          </div>
+          <div class="service-body"><%= p.body %></div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <%# Footer %>
+  <footer class="site-footer">
+    <div class="footer-copy mono">© <%= year %> · Tomke Reibisch</div>
+    <div class="footer-links mono">
+      <a href={if lang == "de", do: "/impressum", else: "/imprint"}><%= t.footer.impressum %></a>
+      <a href={if lang == "de", do: "/datenschutz", else: "/privacy"}><%= t.footer.privacy %></a>
+    </div>
+  </footer>
+
+</div>
