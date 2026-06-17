@@ -1,9 +1,12 @@
+# Production: static site served by nginx. No BEAM runtime.
+# The image build runs `mix build.static` and ships only _site/ behind nginx.
+#
+#   docker compose -f docker-compose.prod.yml up --build -d
 services:
   web:
     build:
       context: .
+    # nginx serves on 80; mapped to 4000 to match the existing proxy target.
     ports:
-      - "4000:4000"
-    env_file:
-      - .env.prod
+      - "4000:80"
     restart: unless-stopped

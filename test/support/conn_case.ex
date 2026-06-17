@@ -4,7 +4,7 @@ defmodule ReibischWeb.ConnCase do
   using do
     quote do
       use Phoenix.ConnTest
-      import ReibischWeb.Router.Helpers
+      use ReibischWeb, :verified_routes
       @endpoint ReibischWeb.Endpoint
     end
   end

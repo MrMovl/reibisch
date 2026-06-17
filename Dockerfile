@@ -1,9 +1,11 @@
 ARG BUILDER_IMAGE="elixir:1.17-slim"
-ARG RUNNER_IMAGE="debian:bookworm-slim"
+ARG RUNNER_IMAGE="nginx:1.27-alpine"
 
+# ── Dev / build base ─────────────────────────────────────────────
+# Elixir is only used to build the site. It never runs in production.
 FROM ${BUILDER_IMAGE} AS dev
 
-RUN apt-get update -y && apt-get install -y build-essential git \
+RUN apt-get update -y && apt-get install -y build-essential git inotify-tools \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN mix local.hex --force && mix local.rebar --force
@@ -12,6 +14,7 @@ WORKDIR /app
 
 CMD ["mix", "phx.server"]
 
+# ── Builder: render templates to static HTML in _site/ ───────────
 FROM dev AS builder
 
 ENV MIX_ENV="prod"
@@ -19,41 +22,22 @@ ENV MIX_ENV="prod"
 COPY mix.exs mix.lock ./
 RUN mix deps.get --only $MIX_ENV
 RUN mkdir config
-COPY config/config.exs config/
-COPY config/prod.exs config/
+COPY config/config.exs config/prod.exs config/
 RUN mix deps.compile
 
 COPY lib lib
 COPY priv priv
 COPY config/runtime.exs config/
 
-RUN mix compile
-RUN mix release
+RUN mix build.static
 
+# ── Runner: plain static files served by nginx, no BEAM ──────────
 FROM ${RUNNER_IMAGE}
 
-RUN apt-get update -y && \
-  apt-get install -y libstdc++6 openssl libncurses5 locales ca-certificates curl \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/_site /usr/share/nginx/html
 
-RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
+EXPOSE 80
 
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
-
-WORKDIR "/app"
-RUN chown nobody /app
-
-ENV MIX_ENV="prod"
-
-COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/reibisch ./
-
-USER nobody
-
-EXPOSE 4000
-
-HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
-  CMD curl -f http://localhost:4000/ || exit 1
-
-CMD ["/app/bin/reibisch", "start"]
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD wget -q -O /dev/null http://localhost/ || exit 1

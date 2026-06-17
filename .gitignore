@@ -6,6 +6,9 @@
 # Generated files
 /priv/static/assets/
 
+# Static site output
+/_site/
+
 # Secrets
 *.secret.exs
 .env

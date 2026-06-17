@@ -4,6 +4,7 @@
 .env.*
 !.env.example
 _build
+_site
 deps
 test
 tmp
