@@ -38,9 +38,19 @@ Before making changes for any non-trivial task:
 - Preserve current UX and visual style unless the task says otherwise.
 
 ## Deployment rules
-- Assume the deployment target is a VPS running Docker.
-- The app is a Phoenix OTP release served via `docker-compose`.
-- Do not change `Dockerfile`, `docker-compose.yml`, or environment variables unless explicitly asked.
+- Deployment target is a Raspberry Pi running Docker, deployed via a self-hosted
+  GitHub Actions runner (see README). Auto-triggers are disabled until the runner
+  is registered.
+- Production is a **static site**: `mix build.static` renders all routes to plain
+  HTML in `_site/`, served by nginx. The BEAM never runs in production — Elixir is
+  build-time only.
+- `docker-compose.yml` = local Phoenix dev server. `docker-compose.prod.yml` = the
+  production nginx + static stack (what the deploy job runs).
+- Add new pages to the `@pages` list in `lib/mix/tasks/build_static.ex` plus a matching
+  route/controller action (controllers/router/maintenance plug are kept for the dev
+  server; they don't affect static output).
+- Do not change `Dockerfile`, `docker-compose*.yml`, `nginx.conf`, or environment
+  variables unless explicitly asked.
 - Keep compatibility with the current build setup.
 
 ## Safety rules

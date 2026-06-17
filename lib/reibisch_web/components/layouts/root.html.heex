@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang={assigns[:lang] || "de"}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="csrf-token" content={get_csrf_token()} />
     <title>Reibisch — Tomke Reibisch · Software &amp; Beratung</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -517,7 +516,6 @@
         .services { padding-top: 40px; padding-bottom: 48px; }
         .service-row { grid-template-columns: 1fr; gap: 8px; }
         .service-name::before { display: none; }
-        .service-body { display: none; }
 
         .contact { padding-top: 48px; padding-bottom: 36px; }
         .contact-row {
