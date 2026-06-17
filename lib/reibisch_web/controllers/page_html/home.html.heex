@@ -140,11 +140,25 @@
       <a href={if lang == "de", do: "/projekte", else: "/projects"}><%= t.nav.projects %></a>
       <a href="#contact"><%= t.nav.contact %></a>
     </nav>
+    <button
+      type="button"
+      class="nav-burger"
+      aria-label={if lang == "de", do: "Menü öffnen", else: "Open menu"}
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    ><span></span><span></span><span></span></button>
     <nav class="lang-switch" aria-label="Language">
       <a href="/" class={if lang == "de", do: "active", else: ""}>DE</a>
       <a href="/en" class={if lang == "en", do: "active", else: ""}>EN</a>
     </nav>
   </div>
+
+  <nav id="mobile-nav" class="mobile-nav-panel mono">
+    <a href="#about"><%= t.nav.about %></a>
+    <a href="#services"><%= t.nav.work %></a>
+    <a href={if lang == "de", do: "/projekte", else: "/projects"}><%= t.nav.projects %></a>
+    <a href="#contact"><%= t.nav.contact %></a>
+  </nav>
 
   <%# Hero %>
   <section class="hero" aria-labelledby="hero-heading">

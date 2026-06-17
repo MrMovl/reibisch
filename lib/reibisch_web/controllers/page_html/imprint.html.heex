@@ -81,11 +81,24 @@
       <a href={"#{t.home_url}#services"}><%= t.nav.work %></a>
       <a href={"#{t.home_url}#contact"}><%= t.nav.contact %></a>
     </nav>
+    <button
+      type="button"
+      class="nav-burger"
+      aria-label={if lang == "de", do: "Menü öffnen", else: "Open menu"}
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    ><span></span><span></span><span></span></button>
     <nav class="lang-switch" aria-label="Language">
       <a href="/impressum" class={if lang == "de", do: "active", else: ""}>DE</a>
       <a href="/imprint"   class={if lang == "en", do: "active", else: ""}>EN</a>
     </nav>
   </div>
+
+  <nav id="mobile-nav" class="mobile-nav-panel mono">
+    <a href={"#{t.home_url}#about"}><%= t.nav.about %></a>
+    <a href={"#{t.home_url}#services"}><%= t.nav.work %></a>
+    <a href={"#{t.home_url}#contact"}><%= t.nav.contact %></a>
+  </nav>
 
   <%# Imprint content %>
   <main style="display:flex;justify-content:center;padding:80px 48px 120px;">

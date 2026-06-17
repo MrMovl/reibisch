@@ -95,6 +95,32 @@
       }
       .top-bar-nav a { color: var(--soft); text-decoration: none; }
 
+      /* Mobile burger menu */
+      .nav-burger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+      }
+      .nav-burger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--deep);
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+      .nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .mobile-nav-panel { display: none; }
+
+      /* Floating scroll-to-top (mobile only) */
+      .scroll-top-btn { display: none; }
+
       /* Hero */
       .hero {
         padding: 64px 48px 48px;
@@ -482,10 +508,63 @@
       /* Mobile */
       @media (max-width: 900px) {
         .top-bar {
-          grid-template-columns: 1fr auto;
+          grid-template-columns: 1fr auto auto;
           padding: 16px 24px 0;
         }
         .top-bar-nav { display: none; }
+        .nav-burger { display: inline-flex; }
+        .mobile-nav-panel {
+          display: flex;
+          flex-direction: column;
+          padding: 0 24px;
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          font-size: 13px;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
+        }
+        .mobile-nav-panel.is-open {
+          max-height: 320px;
+          opacity: 1;
+          padding: 8px 24px 20px;
+        }
+        .mobile-nav-panel a {
+          color: var(--soft);
+          text-decoration: none;
+          padding: 12px 0;
+          border-top: 1px solid var(--rule);
+        }
+
+        .scroll-top-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: fixed;
+          right: 16px;
+          bottom: 16px;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          border: none;
+          background: var(--deep);
+          color: var(--sand);
+          font-size: 18px;
+          line-height: 1;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(8px);
+          transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+          z-index: 30;
+          cursor: pointer;
+        }
+        .scroll-top-btn.is-visible {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
 
         .hero { padding: 40px 24px 32px; }
         .hero-h1 { font-size: clamp(28px, 7vw, 42px); white-space: normal; }
@@ -693,6 +772,25 @@
           "color:#9f8a4e;font-family:monospace;font-size:13px;line-height:1.7",
           "color:#c9b87a;font-family:monospace;font-size:13px;line-height:1.7"
         );
+      })();
+
+      (function () {
+        document.querySelectorAll(".nav-burger").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var panel = document.getElementById(btn.getAttribute("aria-controls"));
+            if (!panel) return;
+            var open = panel.classList.toggle("is-open");
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+          });
+        });
+        document.querySelectorAll(".mobile-nav-panel a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            var panel = link.closest(".mobile-nav-panel");
+            var btn = document.querySelector('.nav-burger[aria-controls="' + panel.id + '"]');
+            panel.classList.remove("is-open");
+            if (btn) btn.setAttribute("aria-expanded", "false");
+          });
+        });
       })();
     </script>
   </body>
