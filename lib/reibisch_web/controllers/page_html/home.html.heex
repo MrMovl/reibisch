@@ -31,6 +31,16 @@
           %{tag: "03", name: "Beratung", body: "Bestandsprojekt, das hängt. Neue Idee, die noch keine Form hat. Oder einfach eine zweite Meinung — ich schaue mir an, was Sie haben, und sage Ihnen, was ich sehe. Sie entscheiden, was als nächstes passiert."}
         ]
       },
+      projects: %{
+        section: "Projekte",
+        title: "Projekte",
+        all_link: "Alle Projekte ansehen",
+        items: [
+          %{name: "Bildungsplattform", desc: "Lernplattform für Schulen"},
+          %{name: "Tourismus-Apps", desc: "Mobile Apps für Tourismusbetriebe"},
+          %{name: "Dashboards & Visualisierung", desc: "Datenanalyse im SAP-Ökosystem"}
+        ]
+      },
       contact: %{
         section: "Kontakt",
         title: "Reden wir",
@@ -73,6 +83,16 @@
           %{tag: "01", name: "Web & Apps", body: "Websites, web apps and mobile apps from sketch to release. Start small, grow cleanly, validate with people who'll actually use it."},
           %{tag: "02", name: "Server & Systems", body: "Backends, integrations, data pipelines. Built to last, low on drama. Including existing systems that have grown over time — and now need someone who will actually think it through."},
           %{tag: "03", name: "Consulting", body: "An existing project that's stuck. A new idea that needs structure. Or just a second opinion — I look at what you have and tell you what I see. You decide what happens next."}
+        ]
+      },
+      projects: %{
+        section: "Projects",
+        title: "Projects",
+        all_link: "View all projects",
+        items: [
+          %{name: "Education platform", desc: "Learning platform for schools"},
+          %{name: "Tourism apps", desc: "Mobile apps for tourism businesses"},
+          %{name: "Dashboards & visualization", desc: "Data analysis in the SAP ecosystem"}
         ]
       },
       contact: %{
@@ -137,7 +157,7 @@
     <nav class="top-bar-nav">
       <a href="#about"><%= t.nav.about %></a>
       <a href="#services"><%= t.nav.work %></a>
-      <a href={if lang == "de", do: "/projekte", else: "/projects"}><%= t.nav.projects %></a>
+      <a href="#projects"><%= t.nav.projects %></a>
       <a href="#contact"><%= t.nav.contact %></a>
     </nav>
     <button
@@ -156,7 +176,7 @@
   <nav id="mobile-nav" class="mobile-nav-panel mono">
     <a href="#about"><%= t.nav.about %></a>
     <a href="#services"><%= t.nav.work %></a>
-    <a href={if lang == "de", do: "/projekte", else: "/projects"}><%= t.nav.projects %></a>
+    <a href="#projects"><%= t.nav.projects %></a>
     <a href="#contact"><%= t.nav.contact %></a>
   </nav>
 
@@ -203,11 +223,32 @@
     </div>
   </section>
 
+  <%# Projects (short list, links to dedicated page) %>
+  <section id="projects" class="sec services" aria-labelledby="projects-heading">
+    <div class="sec-label">
+      <div class="section-label serif">
+        <span class="section-label-mark mono">02</span><%= t.projects.section %>
+      </div>
+    </div>
+    <div class="sec-content">
+      <h2 id="projects-heading" class="services-h2 serif"><%= t.projects.title %></h2>
+      <%= for p <- t.projects.items do %>
+        <div class="service-row">
+          <div class="service-name serif"><%= p.name %></div>
+          <div class="service-body"><%= p.desc %></div>
+        </div>
+      <% end %>
+      <a href={if lang == "de", do: "/projekte", else: "/projects"} class="projects-all-link mono">
+        <%= t.projects.all_link %> <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
   <%# About %>
   <section id="about" class="sec about" aria-labelledby="about-heading">
     <div class="sec-label">
       <div class="section-label serif">
-        <span class="section-label-mark mono">02</span><%= t.about.section %>
+        <span class="section-label-mark mono">03</span><%= t.about.section %>
       </div>
     </div>
     <div class="sec-content">
@@ -217,9 +258,9 @@
         <p class="about-body"><%= t.about.body %></p>
       </div>
       <ul class="about-points" aria-label="Principles">
-        <%= for {point, i} <- Enum.with_index(t.about.points) do %>
+        <%= for point <- t.about.points do %>
           <li class="about-point hangs">
-            <span class="mark about-point-num mono">0<%= i + 1 %>/</span>
+            <span class="mark about-point-num mono">~</span>
             <span class="txt about-point-text serif"><%= point %></span>
           </li>
         <% end %>
@@ -251,7 +292,7 @@
 
     <div class="sec-label">
       <div class="contact-label serif">
-        <span class="contact-label-mark mono">03</span><%= t.contact.section %>
+        <span class="contact-label-mark mono">04</span><%= t.contact.section %>
       </div>
     </div>
     <div class="sec-content">
