@@ -4,6 +4,11 @@
 #   docker compose -f docker-compose.prod.yml up --build -d
 services:
   web:
+    # Image is cross-built for the Pi (armv7) and shipped from a dev machine via
+    # deploy.sh — the server loads a prebuilt image instead of compiling (the Pi
+    # OOMs running `mix build.static`). `build:` stays for local builds; the Pi
+    # deploy runs `up -d --no-build` against the shipped image.
+    image: ${APP_IMAGE:-reibisch-web:latest}
     build:
       context: .
     # nginx serves on 80; mapped to 4000 to match the existing proxy target.

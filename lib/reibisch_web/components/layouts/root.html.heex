@@ -319,7 +319,7 @@
       }
 
       /* Services — label in .sec-label, h2 + rows in .sec-content */
-      .services {
+      .services, .projects {
         padding-top: 56px;
         padding-bottom: 64px;
       }
@@ -369,6 +369,21 @@
         color: var(--soft);
         letter-spacing: 0.04em;
       }
+      .projects-all-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 24px;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--sand-deep);
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+      }
+      .projects-all-link .arrow { display: inline-block; transition: transform 0.3s ease; }
+      .projects-all-link:hover { opacity: 0.75; }
+      .projects-all-link:hover .arrow { transform: translateX(4px); }
       .service-body {
         font-size: 15px;
         line-height: 1.6;
@@ -592,7 +607,7 @@
         .about-points { padding-top: 0; }
         .hangs { margin-left: 0; }
 
-        .services { padding-top: 40px; padding-bottom: 48px; }
+        .services, .projects { padding-top: 40px; padding-bottom: 48px; }
         .service-row { grid-template-columns: 1fr; gap: 8px; }
         .service-name::before { display: none; }
 
@@ -755,6 +770,12 @@
   </head>
   <body>
     <%= @inner_content %>
+    <button
+      type="button"
+      class="scroll-top-btn"
+      id="scroll-top-btn"
+      aria-label={if (assigns[:lang] || "de") == "de", do: "Nach oben", else: "Back to top"}
+    >↑</button>
     <script>
       (function () {
         var wave = [
@@ -790,6 +811,23 @@
             panel.classList.remove("is-open");
             if (btn) btn.setAttribute("aria-expanded", "false");
           });
+        });
+      })();
+
+      (function () {
+        var btn = document.getElementById("scroll-top-btn");
+        if (!btn) return;
+        var toggle = function () {
+          if (window.scrollY > 400) {
+            btn.classList.add("is-visible");
+          } else {
+            btn.classList.remove("is-visible");
+          }
+        };
+        window.addEventListener("scroll", toggle, { passive: true });
+        toggle();
+        btn.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
         });
       })();
     </script>
