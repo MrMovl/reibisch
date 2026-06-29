@@ -37,6 +37,13 @@ Before making changes for any non-trivial task:
 - Keep logic in controllers and templates simple; avoid premature LiveView unless interactivity is explicitly requested.
 - Preserve current UX and visual style unless the task says otherwise.
 
+## Git workflow rules
+- **PR-only. Never commit or push to `main` directly** unless the architect
+  explicitly says it's fine to work on main this time. This covers ALL changes,
+  including docs, deploy scripts, and one-line fixes.
+- Sequence is always: branch, commit, open PR, wait for explicit merge approval,
+  merge, then `git checkout main && git pull` before deploying.
+
 ## Deployment rules
 - Deployment target is a Raspberry Pi (armv7) running Docker. SSH alias: `pi`.
 - **Deploy command: `./deploy.sh`** — run from the repo root on the dev machine.
