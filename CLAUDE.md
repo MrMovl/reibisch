@@ -43,6 +43,10 @@ Before making changes for any non-trivial task:
   It cross-builds a linux/arm/v7 Docker image locally (Pi OOMs running `mix build.static`),
   ships the image via `docker save | ssh pi 'docker load'`, and restarts the stack.
   GitHub is not in the loop — the Pi never pulls from GitHub.
+- **CRITICAL: deploy.sh builds from the LOCAL working tree, not GitHub.** After
+  merging a PR on GitHub you MUST `git checkout main && git pull` (or rebase local
+  commits onto origin/main) BEFORE `./deploy.sh`, or it bakes stale content into the
+  image. Verify content shipped: `curl -s https://reibisch.de/ | grep <new-text>`.
 - Production is a **static site**: `mix build.static` renders all routes to plain
   HTML in `_site/`, served by nginx. The BEAM never runs in production — Elixir is
   build-time only.
