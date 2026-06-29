@@ -52,6 +52,6 @@ echo ">> Shipping image to $DEPLOY_HOST (slow over a home link)"
 docker save "$APP_IMAGE" | gzip | ssh "$DEPLOY_HOST" 'gunzip | docker load'
 
 echo ">> Restarting stack on $DEPLOY_HOST:$DEPLOY_PATH"
-ssh "$DEPLOY_HOST" "cd $DEPLOY_PATH && APP_IMAGE='$APP_IMAGE' docker compose -f '$COMPOSE_FILE' up -d --no-build --remove-orphans"
+ssh "$DEPLOY_HOST" "cd $DEPLOY_PATH && APP_IMAGE='$APP_IMAGE' docker compose -f '$COMPOSE_FILE' up -d --no-build --force-recreate --remove-orphans"
 
 echo ">> Done. $APP_IMAGE deployed to $DEPLOY_HOST."
