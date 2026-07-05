@@ -101,7 +101,8 @@ tokens are the same primitives the main site uses for About / Services / Contact
 
 `{{CLIENT_LOGO_DATA_URI}}`, `{{CLIENT_KICKER}}`, `{{PAGE_TAG}}`, `{{EYEBROW}}`,
 `{{TITLE}}`, `{{SUBLINE}}`, `{{STATUS_QUO}}`, decision blocks, `{{NEXT_STEP_*}}`,
-`{{SIGNATURE}}`. Each is marked with an HTML comment.
+`{{SIGNATURE}}` (+ `{{SIGNATURE_URL}}` — links the bottom-right signature to your
+page, e.g. `https://reibisch.de`). Each is marked with an HTML comment.
 
 ---
 
