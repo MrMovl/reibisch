@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!--
+  CLIENT DECISION PAGE — reibisch "hafen" design system.
+  See GUIDE.md for how to fill this in. Copy to the CLIENT's repo, not here.
+  Replace every {{PLACEHOLDER}}. Duplicate the marked .decision block per point.
+  Self-contained: inline CSS + logo as data URI. Works offline (fonts degrade).
+-->
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{TITLE}} — Entscheidungen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&family=Newsreader:ital,wght@0,350;1,350&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      :root {
+        --paper: #eef2f1;
+        --ink: #1a2b35;
+        --deep: #26465a;
+        --sand: #c9b87a;
+        --sand-deep: #9f8a4e;
+        --white-warm: #fbfaf6;
+        --rule: rgba(38, 70, 90, 0.14);
+        --soft: rgba(38, 70, 90, 0.55);
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'Geist', system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrap { max-width: 1080px; margin: 0 auto; }
+      .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+      .serif { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-weight: 350; }
+
+      /* Top bar */
+      .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 24px 48px 0;
+      }
+      .brand { display: inline-flex; align-items: center; gap: 14px; }
+      .brand-plate {
+        display: inline-flex;
+        align-items: center;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 4px;
+        padding: 9px 13px;
+        box-shadow: 0 1px 0 rgba(15, 31, 44, 0.05);
+      }
+      .brand-plate img { display: block; height: 24px; width: auto; }
+      .brand-kicker {
+        font-family: 'Geist Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--soft);
+      }
+      .top-bar-tag {
+        font-family: 'Geist Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--deep);
+        font-weight: 500;
+        text-align: right;
+      }
+
+      /* Hero */
+      .hero { padding: 56px 48px 40px; }
+      .hero-eyebrow {
+        font-family: 'Geist Mono', monospace;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--soft);
+        margin-bottom: 20px;
+      }
+      .hero-h1 {
+        font-family: 'Newsreader', Georgia, serif;
+        font-weight: 350;
+        font-size: clamp(38px, 5vw, 62px);
+        line-height: 1.03;
+        letter-spacing: -0.02em;
+        margin: 0;
+        color: var(--deep);
+      }
+      .hero-sub {
+        font-family: 'Newsreader', Georgia, serif;
+        font-weight: 350;
+        font-style: italic;
+        font-size: 22px;
+        line-height: 1.5;
+        color: var(--ink);
+        margin: 28px 0 0;
+        max-width: 52ch;
+        opacity: 0.9;
+        text-wrap: pretty;
+      }
+      .hero-status {
+        margin: 28px 0 0;
+        max-width: 66ch;
+        font-size: 15px;
+        line-height: 1.65;
+        color: var(--ink);
+        padding: 18px 20px;
+        background: var(--white-warm);
+        border: 1px solid var(--rule);
+        border-left: 3px solid var(--sand);
+        border-radius: 3px;
+      }
+      .hero-status .mono { font-size: 13px; color: var(--deep); }
+
+      .hairline { height: 1px; background: var(--rule); margin: 8px 48px 0; }
+
+      /* Section grid: label · gap · content */
+      .sec {
+        padding: 56px 48px;
+        display: grid;
+        grid-template-columns: 200px 48px 1fr;
+      }
+      .sec > .sec-label { grid-column: 1 / 2; }
+      .sec > .sec-content { grid-column: 3 / 4; min-width: 0; }
+      .section-label {
+        font-family: 'Newsreader', Georgia, serif;
+        font-style: italic;
+        font-weight: 350;
+        font-size: 26px;
+        line-height: 1.1;
+        color: var(--sand-deep);
+        letter-spacing: -0.01em;
+        padding-top: 6px;
+      }
+      .section-label-mark {
+        display: block;
+        font-family: 'Geist Mono', monospace;
+        font-style: normal;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--soft);
+        margin-bottom: 8px;
+      }
+      .sec-h2 {
+        font-family: 'Newsreader', Georgia, serif;
+        font-weight: 350;
+        font-size: clamp(30px, 3.6vw, 44px);
+        margin: 0 0 8px;
+        line-height: 1.05;
+        color: var(--deep);
+        letter-spacing: -0.02em;
+      }
+      .sec-intro {
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--soft);
+        margin: 0 0 12px;
+        max-width: 60ch;
+      }
+
+      /* Decision rows */
+      .decision {
+        padding: 28px 0;
+        border-top: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        column-gap: 16px;
+        align-items: start;
+      }
+      .decision:last-child { border-bottom: 1px solid var(--rule); }
+      .decision-num {
+        font-family: 'Geist Mono', monospace;
+        font-size: 12px;
+        color: var(--sand-deep);
+        letter-spacing: 0.04em;
+        padding-top: 9px;
+      }
+      .decision-name {
+        font-family: 'Newsreader', Georgia, serif;
+        font-weight: 350;
+        font-size: 27px;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        color: var(--deep);
+        margin: 0 0 14px;
+      }
+      .opts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+      .opt { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-items: baseline; }
+      .opt-tag {
+        font-family: 'Geist Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--deep);
+        background: rgba(201, 184, 122, 0.22);
+        border: 1px solid rgba(159, 138, 78, 0.3);
+        border-radius: 3px;
+        padding: 3px 8px;
+        white-space: nowrap;
+        min-width: 34px;
+        text-align: center;
+      }
+      .opt-body { font-size: 15.5px; line-height: 1.55; color: var(--ink); max-width: 66ch; }
+      .opt-body b { color: var(--deep); font-weight: 600; }
+
+      /* Plain "~" list (I'll handle it / costs) */
+      .rows { list-style: none; margin: 0; padding: 0; }
+      .row {
+        padding: 18px 0;
+        border-top: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        column-gap: 12px;
+      }
+      .rows .row:last-child { border-bottom: 1px solid var(--rule); }
+      .row-mark {
+        font-family: 'Geist Mono', monospace;
+        font-size: 12px;
+        color: var(--soft);
+        padding-top: 2px;
+      }
+      .row-body { font-size: 15.5px; line-height: 1.6; color: var(--ink); max-width: 70ch; }
+      .row-body b { color: var(--deep); font-weight: 600; }
+
+      /* Next-step band */
+      .band { background: var(--deep); color: var(--paper); padding: 60px 48px; }
+      .band-label {
+        font-family: 'Geist Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(238, 242, 241, 0.55);
+        margin-bottom: 16px;
+      }
+      .band-h2 {
+        font-family: 'Newsreader', Georgia, serif;
+        font-weight: 350;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin: 0 0 16px;
+        color: var(--white-warm);
+      }
+      .band-sub {
+        font-size: 15.5px;
+        line-height: 1.6;
+        max-width: 60ch;
+        color: rgba(238, 242, 241, 0.82);
+        margin: 0;
+      }
+      .band-bottom {
+        margin-top: 36px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(238, 242, 241, 0.18);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-family: 'Geist Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--sand);
+      }
+      .band-bottom span { color: rgba(238, 242, 241, 0.55); }
+
+      /* Mobile */
+      @media (max-width: 860px) {
+        .top-bar, .hero, .band { padding-left: 24px; padding-right: 24px; }
+        .hairline { margin-left: 24px; margin-right: 24px; }
+        .sec { padding: 40px 24px; grid-template-columns: 1fr; }
+        .sec > .sec-label, .sec > .sec-content { grid-column: 1 / -1; }
+        .section-label { padding-top: 0; margin-bottom: 20px; }
+        .top-bar-tag { display: none; }
+      }
+
+      /* Print */
+      @media print {
+        html, body { background: #fff; }
+        .band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .decision, .row { break-inside: avoid; }
+        .hero { padding-top: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top-bar">
+        <div class="brand">
+          <span class="brand-plate">
+            <!-- {{CLIENT_LOGO_DATA_URI}}: base64 the client logo (see GUIDE.md).
+                 Default below is a placeholder SVG — replace the whole src. -->
+            <img
+              src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='150'%20height='28'%3E%3Crect%20width='150'%20height='28'%20fill='%23ffffff'/%3E%3Ctext%20x='6'%20y='19'%20font-family='monospace'%20font-size='13'%20fill='%239f8a4e'%3ELOGO%3C/text%3E%3C/svg%3E"
+              alt="{{CLIENT_NAME}}"
+            />
+          </span>
+          <!-- {{CLIENT_KICKER}}: short word under/next to logo, e.g. project name -->
+          <span class="brand-kicker">{{CLIENT_KICKER}}</span>
+        </div>
+        <!-- {{PAGE_TAG}}: right-aligned, e.g. "Projekt · Entscheidungen" -->
+        <div class="top-bar-tag">{{PAGE_TAG}}</div>
+      </header>
+
+      <section class="hero">
+        <!-- {{EYEBROW}}: mono kicker, e.g. "MVP → Produkt" -->
+        <p class="hero-eyebrow">{{EYEBROW}}</p>
+        <!-- {{TITLE}}: page title -->
+        <h1 class="hero-h1">{{TITLE}}</h1>
+        <!-- {{SUBLINE}}: one italic sentence, what this page is / what you need -->
+        <p class="hero-sub">{{SUBLINE}}</p>
+        <!-- {{STATUS_QUO}}: current state box. Use <b> and <span class="mono"> -->
+        <p class="hero-status">{{STATUS_QUO}}</p>
+      </section>
+
+      <div class="hairline"></div>
+
+      <!-- SECTION 1: open decisions (cost / UX / behavior only, no recommendations) -->
+      <section class="sec">
+        <div class="sec-label">
+          <span class="section-label">
+            <span class="section-label-mark">01 — Offen</span>
+            Entscheidungen
+          </span>
+        </div>
+        <div class="sec-content">
+          <h2 class="sec-h2">Das musst du entscheiden</h2>
+          <p class="sec-intro">
+            Punkte, die Kosten, Bedienung oder Verhalten der App betreffen. Hier
+            gebe ich bewusst keine Empfehlung vor.
+          </p>
+
+          <!-- ===== DUPLICATE THIS .decision BLOCK PER DECISION ===== -->
+          <div class="decision">
+            <div class="decision-num">01</div>
+            <div>
+              <h3 class="decision-name">{{DECISION_TITLE}}</h3>
+              <ul class="opts">
+                <li class="opt">
+                  <span class="opt-tag">a</span>
+                  <span class="opt-body">
+                    <b>{{OPTION_A_NAME}}</b> — {{OPTION_A_TRADEOFF}}
+                  </span>
+                </li>
+                <li class="opt">
+                  <span class="opt-tag">b</span>
+                  <span class="opt-body">
+                    <b>{{OPTION_B_NAME}}</b> — {{OPTION_B_TRADEOFF}}
+                  </span>
+                </li>
+                <!-- more options: opt-tag can be c / d / — / ? -->
+              </ul>
+            </div>
+          </div>
+          <!-- ===== END .decision BLOCK ===== -->
+        </div>
+      </section>
+
+      <!-- SECTION 2: technical defaults you set yourself (no UX/behavior here) -->
+      <section class="sec">
+        <div class="sec-label">
+          <span class="section-label">
+            <span class="section-label-mark">02 — Erledigt</span>
+            Technik
+          </span>
+        </div>
+        <div class="sec-content">
+          <h2 class="sec-h2">Das setze ich um</h2>
+          <p class="sec-intro">Technischer Standard, keine Rückfrage nötig.</p>
+          <ul class="rows">
+            <li class="row">
+              <span class="row-mark">~</span>
+              <span class="row-body"><b>{{DEFAULT_NAME}}</b> — {{DEFAULT_DETAIL}}</span>
+            </li>
+            <!-- duplicate .row per default -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- SECTION 3: rough cost -->
+      <section class="sec">
+        <div class="sec-label">
+          <span class="section-label">
+            <span class="section-label-mark">03 — Überblick</span>
+            Kosten grob
+          </span>
+        </div>
+        <div class="sec-content">
+          <h2 class="sec-h2">Was es kostet</h2>
+          <!-- keep this note if any figure is not verified -->
+          <p class="sec-intro">Alle Beträge grobe Schätzung, keine Angebote.</p>
+          <ul class="rows">
+            <li class="row">
+              <span class="row-mark">01</span>
+              <span class="row-body"><b>{{COST_ITEM}}:</b> {{COST_DETAIL}}</span>
+            </li>
+            <!-- duplicate .row per cost line -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- Closing band -->
+      <section class="band">
+        <p class="band-label">Nächster Schritt</p>
+        <h2 class="band-h2">{{NEXT_STEP_HEADLINE}}</h2>
+        <p class="band-sub">{{NEXT_STEP_DETAIL}}</p>
+        <div class="band-bottom">
+          <span>{{PROJECT_LABEL}}</span>
+          <span>{{SIGNATURE}}</span>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
