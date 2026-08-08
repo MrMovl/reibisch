@@ -681,14 +681,29 @@
         line-height: 0;
         margin-bottom: 18px;
       }
-      .biz-card-mid a {
+      .biz-card-mid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .biz-card-mid a:not(.biz-card-qr) {
         font-family: 'Geist Mono', monospace;
         font-size: 13px;
         letter-spacing: 0.04em;
         color: var(--deep);
         text-decoration: none;
       }
-      .biz-card-mid a:hover { text-decoration: underline; }
+      .biz-card-mid a:not(.biz-card-qr):hover { text-decoration: underline; }
+      .biz-card-qr {
+        flex-shrink: 0;
+        line-height: 0;
+      }
+      .biz-card-qr img {
+        display: block;
+        width: 56px;
+        height: 56px;
+      }
       .biz-card-bottom {
         display: flex;
         justify-content: space-between;
