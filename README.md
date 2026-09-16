@@ -1,12 +1,12 @@
 # reibisch
 
-Personal business homepage. A single-page Phoenix app with no database or CMS — content lives in source code and is maintained via Claude.
+Personal business homepage ([reibisch.de](https://reibisch.de)). Phoenix is used at build time only: all pages are rendered to static HTML and served by nginx. No database or CMS — content lives in source code and is maintained via Claude.
 
 ## Stack
 
 - [Elixir](https://elixir-lang.org/) / [Phoenix](https://www.phoenixframework.org/) 1.7
-- HEEx templates, Tailwind CSS (CDN for now)
-- Docker + docker-compose for deployment
+- HEEx templates with inline CSS
+- Static output served by nginx in Docker (Raspberry Pi, armv7)
 
 ## Local development
 
@@ -19,33 +19,29 @@ mix phx.server
 
 Visit [localhost:4000](http://localhost:4000).
 
+Or with Docker: `docker compose up`.
+
 ## Tests
 
 ```bash
 mix test
 ```
 
+## Static build
+
+```bash
+mix build.static
+```
+
+Renders every page listed in `@pages` in `lib/mix/tasks/build_static.ex` to `_site/`. New pages need an entry there plus a matching route and controller action (used by the dev server).
+
 ## Deployment
 
-The app ships as an OTP release inside a Docker container.
-
-**Build and run:**
-
 ```bash
-docker build -t reibisch .
-docker run -p 4000:4000 \
-  -e SECRET_KEY_BASE=$(mix phx.gen.secret) \
-  -e PHX_HOST=yourdomain.com \
-  reibisch
+./deploy.sh
 ```
 
-**With docker-compose** (expects a `.env` file or environment variables):
-
-```bash
-SECRET_KEY_BASE=... PHX_HOST=yourdomain.com docker-compose up
-```
-
-Generate a secret key with: `mix phx.gen.secret`
+Cross-builds a `linux/arm/v7` image locally (the Pi runs out of memory building the site), ships it over SSH with `docker save | ssh pi 'docker load'`, and restarts `docker-compose.prod.yml` on the Pi. It builds from the **local working tree**, so pull `main` first. See the header of `deploy.sh` for env var overrides.
 
 ## CI / Automated deployment
 
@@ -55,4 +51,4 @@ Do not register a self-hosted GitHub Actions runner for this repo: in a public r
 
 ## Content
 
-All page content is in `lib/reibisch_web/controllers/page_html/home.html.heex`. Edit that file to update the page. No rebuild needed in dev — Phoenix reloads automatically.
+Page content lives in `lib/reibisch_web/controllers/page_html/*.html.heex` (home, imprint, privacy, projects, card). Edit those files to update the pages. No rebuild needed in dev — Phoenix reloads automatically.
