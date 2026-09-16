@@ -1,14 +1,8 @@
-name: CI + Deploy
+name: CI
 
-# Automatic triggers disabled — no push/PR runs until self-hosted runner is set up on the Pi.
-# To activate: replace workflow_dispatch with the push/pull_request block below and
-# register the runner on the Pi (GitHub → Settings → Actions → Runners → New self-hosted runner).
-#
-# on:
-#   push:
-#     branches: ["**"]
-#   pull_request:
-#     branches: ["main"]
+# Manual only. Deploys run from a dev machine via ./deploy.sh, not from Actions.
+# Never add a self-hosted runner job here: on a public repo, fork PRs could run
+# arbitrary code on that runner.
 
 on:
   workflow_dispatch:
@@ -52,14 +46,3 @@ jobs:
       - name: Run tests
         run: mix test
 
-  deploy:
-    name: Deploy
-    runs-on: self-hosted
-    needs: test
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Rebuild and restart
-        run: docker compose -f docker-compose.prod.yml up --build -d --remove-orphans
