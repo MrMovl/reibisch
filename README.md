@@ -49,24 +49,9 @@ Generate a secret key with: `mix phx.gen.secret`
 
 ## CI / Automated deployment
 
-CI runs are currently set to **manual only** (`workflow_dispatch`) because the deploy target is a home server (Raspberry Pi) behind a local-network firewall — GitHub-hosted runners can't reach it via SSH.
+CI (tests only) runs **manually** (`workflow_dispatch`). Deployment is done from a dev machine with `./deploy.sh`, not from GitHub Actions.
 
-The deploy job is written for a **self-hosted GitHub Actions runner** running directly on the Pi. Once the runner is registered, automated test + deploy on every push to `main` is one config change away.
-
-### Setting up the self-hosted runner on the Pi
-
-1. Go to **GitHub → Repo → Settings → Actions → Runners → New self-hosted runner**
-2. Follow the download and configure steps GitHub shows (takes ~5 minutes)
-3. Install and start it as a systemd service:
-
-```bash
-sudo ./svc.sh install
-sudo ./svc.sh start
-```
-
-4. In `.github/workflows/ci.yml`, replace the `workflow_dispatch` trigger with the push/pull_request block that is commented out at the top of the file
-
-After that, every push to `main` will run tests on GitHub-hosted infrastructure and deploy to the Pi via the self-hosted runner — no SSH keys, no secrets, no firewall changes needed.
+Do not register a self-hosted GitHub Actions runner for this repo: in a public repository, pull requests from forks could run arbitrary code on it.
 
 ## Content
 
