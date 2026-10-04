@@ -36,10 +36,10 @@
         title: "Projekte",
         all_link: "Alle Projekte ansehen",
         items: [
-          %{name: "KI auf eigener Hardware", desc: "Sprachmodell im eigenen Haus, mit kuratierter Wissensbasis"},
-          %{name: "Bildungsplattform", desc: "Lernplattform für Schulen"},
-          %{name: "Dashboards & Visualisierung", desc: "Datenanalyse im SAP-Ökosystem"},
-          %{name: "Tourismus-Apps", desc: "Mobile Apps für Tourismusbetriebe"}
+          %{tag: "01", name: "KI auf eigener Hardware", desc: "Sprachmodell im eigenen Haus, mit kuratierter Wissensbasis"},
+          %{tag: "02", name: "Bildungsplattform", desc: "Lernplattform für Schulen"},
+          %{tag: "03", name: "Dashboards & Visualisierung", desc: "Datenanalyse im SAP-Ökosystem"},
+          %{tag: "04", name: "Tourismus-Apps", desc: "Mobile Apps für Tourismusbetriebe"}
         ]
       },
       contact: %{
@@ -90,10 +90,10 @@
         title: "Projects",
         all_link: "View all projects",
         items: [
-          %{name: "AI on your own hardware", desc: "In-house language model with a curated knowledge base"},
-          %{name: "Education platform", desc: "Learning platform for schools"},
-          %{name: "Dashboards & visualization", desc: "Data analysis in the SAP ecosystem"},
-          %{name: "Tourism apps", desc: "Mobile apps for tourism businesses"}
+          %{tag: "01", name: "AI on your own hardware", desc: "In-house language model with a curated knowledge base"},
+          %{tag: "02", name: "Education platform", desc: "Learning platform for schools"},
+          %{tag: "03", name: "Dashboards & visualization", desc: "Data analysis in the SAP ecosystem"},
+          %{tag: "04", name: "Tourism apps", desc: "Mobile apps for tourism businesses"}
         ]
       },
       contact: %{
@@ -231,8 +231,8 @@
     </div>
     <div class="sec-content">
       <h2 id="projects-heading" class="services-h2 serif"><%= t.projects.title %></h2>
-      <%= for {p, i} <- Enum.with_index(t.projects.items, 1) do %>
-        <a href={"#{if lang == "de", do: "/projekte", else: "/projects"}#project-0#{i}"} class="service-row">
+      <%= for p <- t.projects.items do %>
+        <a href={"#{if lang == "de", do: "/projekte", else: "/projects"}#project-#{p.tag}"} class="service-row">
           <div class="service-name serif"><%= p.name %></div>
           <div class="service-body"><%= p.desc %></div>
         </a>
