@@ -1,0 +1,25 @@
+# Weekly update PRs. Nothing merges automatically: every PR goes through
+# review and CI like any other change, then gets deployed via ./deploy.sh.
+version: 2
+updates:
+  - package-ecosystem: mix
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      mix:
+        patterns: ["*"]
+
+  # Base images in the Dockerfile (elixir builder, nginx runner).
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
