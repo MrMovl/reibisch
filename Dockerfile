@@ -1,5 +1,5 @@
 ARG BUILDER_IMAGE="elixir:1.17-slim"
-ARG RUNNER_IMAGE="nginx:1.27-alpine"
+ARG RUNNER_IMAGE="nginx:1.30-alpine"
 
 # ── Dev / build base ─────────────────────────────────────────────
 # Elixir is only used to build the site. It never runs in production.
