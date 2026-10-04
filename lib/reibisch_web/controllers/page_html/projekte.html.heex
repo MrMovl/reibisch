@@ -10,38 +10,6 @@
       section: "Projekte",
       title: "Ausgewählte Projekte",
       client_label: "Kundenprojekte",
-      clients: [
-        %{
-          tag: "01",
-          name: "KI auf eigener Hardware",
-          meta: "Künstliche Intelligenz · On-Premise · laufend",
-          body: "Eine Oberfläche für ein Sprachmodell, das vollständig auf der Hardware des Kunden läuft. Zwei Arten von Daten bleiben im Haus: personenbezogene Nutzerdaten und das proprietäre Geschäftswissen. Für die Auswahl habe ich Beispiele aus dem Arbeitsalltag in automatische Tests verwandelt und auf verschiedenen Modellen und Hardware laufen lassen, um die beste Kombination für den konkreten Einsatz zu finden. Eine kuratierte Wissensbasis sorgt dafür, dass das Modell mit dem Wissen des Unternehmens arbeitet und nicht nur mit allgemeinem."
-        },
-        %{
-          tag: "02",
-          name: "Bildungsplattform",
-          meta: "Bildung",
-          body: "Lernplattform für Grundschulkinder. Als die Pandemie die Nutzerzahlen über Nacht in die Höhe trieb, habe ich die Plattform für den Ansturm skaliert und dafür gesorgt, dass sie auch auf der teils älteren Hardware läuft, die an Schulen im ganzen Land im Einsatz ist."
-        },
-        %{
-          tag: "03",
-          name: "Dashboards & Visualisierung",
-          meta: "SAP-Ökosystem · Datenanalyse",
-          body: "Werkzeuge, die Kennzahlen und Rohdaten verständlich und nutzbar machen. Der Anspruch: Fakten ehrlich abbilden, Daten so darstellen, dass sie die Wahrheit zeigen, statt eine bestimmte Wirkung zu erzwingen."
-        },
-        %{
-          tag: "04",
-          name: "Tourismus-Apps",
-          meta: "Tourismus · mehrere Projekte",
-          body: "Progressive Web Apps rund um kulturell bedeutsame Orte, kein kommerzielles Ausschlachten, sondern Inhalte mit Wert. Jeder Standort konnte eigene Funktionen beisteuern, was jedes Projekt eigen und abwechslungsreich machte."
-        },
-        %{
-          tag: "05",
-          name: "Community-Plattform",
-          meta: "Soziales Netzwerk · Startup",
-          body: "Ein soziales Netzwerk, das Menschen über räumliche Nähe zusammenbringt: Wer in der Umgebung lebt, findet zueinander. Nicht globale Reichweite, sondern echte Verbindungen vor Ort. Eine andere Aufgabe als der übliche Feed, mit eigenen Anforderungen an Datenmodell und Privatsphäre."
-        }
-      ],
       footer: %{impressum: "Impressum", privacy: "Datenschutz"}
     },
     "en" => %{
@@ -51,38 +19,6 @@
       section: "Projects",
       title: "Selected projects",
       client_label: "Client work",
-      clients: [
-        %{
-          tag: "01",
-          name: "AI on your own hardware",
-          meta: "Artificial intelligence · on-premise · ongoing",
-          body: "An interface for a language model that runs entirely on the client's own hardware. Two kinds of data stay in-house: personal user data and proprietary business knowledge. To choose, I turned samples from day-to-day workflows into automated tests and ran them across different models and hardware, to find the best fit for the actual use. A curated knowledge base makes sure the model works with the company's own knowledge, not just general knowledge."
-        },
-        %{
-          tag: "02",
-          name: "Education platform",
-          meta: "Education",
-          body: "Learning platform for primary school children. When the pandemic sent traffic through the roof overnight, I scaled the platform to handle the load and made sure it ran on the older hardware still in use in schools across the country."
-        },
-        %{
-          tag: "03",
-          name: "Dashboards & visualization",
-          meta: "SAP ecosystem · data analysis",
-          body: "Tools that turn metrics and raw data into something usable and clear. The principle: present the facts honestly, show what the data actually says, rather than bending it toward a particular feeling or outcome."
-        },
-        %{
-          tag: "04",
-          name: "Tourism apps",
-          meta: "Tourism · multiple projects",
-          body: "Progressive web apps centred on culturally significant places, not commercial exploitation, but content with genuine value. Each site could contribute its own features, which made every project distinct and varied."
-        },
-        %{
-          tag: "05",
-          name: "Community platform",
-          meta: "Social network · startup",
-          body: "A social network organised around where people actually live: those nearby find each other. Not global reach, but genuine local connection. A different kind of problem to the usual feed, with its own demands on data model and privacy."
-        }
-      ],
       footer: %{impressum: "Imprint", privacy: "Privacy"}
     }
   }
@@ -138,8 +74,8 @@
     </div>
     <div class="sec-content">
       <h1 id="projects-heading" class="services-h2 serif"><%= t.title %></h1>
-      <%= for p <- t.clients do %>
-        <div id={"project-#{p.tag}"} class="service-row service-row--static">
+      <%= for p <- Projects.all(lang) do %>
+        <div id={Projects.anchor_id(p)} class="service-row service-row--static">
           <div class="service-name serif">
             <%= p.name %>
             <div class="about-role mono" style="font-size:0.72rem;margin-top:0.2em"><%= p.meta %></div>

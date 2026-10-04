@@ -34,13 +34,7 @@
       projects: %{
         section: "Projekte",
         title: "Projekte",
-        all_link: "Alle Projekte ansehen",
-        items: [
-          %{tag: "01", name: "KI auf eigener Hardware", desc: "Sprachmodell im eigenen Haus, mit kuratierter Wissensbasis"},
-          %{tag: "02", name: "Bildungsplattform", desc: "Lernplattform für Schulen"},
-          %{tag: "03", name: "Dashboards & Visualisierung", desc: "Datenanalyse im SAP-Ökosystem"},
-          %{tag: "04", name: "Tourismus-Apps", desc: "Mobile Apps für Tourismusbetriebe"}
-        ]
+        all_link: "Alle Projekte ansehen"
       },
       contact: %{
         section: "Kontakt",
@@ -88,13 +82,7 @@
       projects: %{
         section: "Projects",
         title: "Projects",
-        all_link: "View all projects",
-        items: [
-          %{tag: "01", name: "AI on your own hardware", desc: "In-house language model with a curated knowledge base"},
-          %{tag: "02", name: "Education platform", desc: "Learning platform for schools"},
-          %{tag: "03", name: "Dashboards & visualization", desc: "Data analysis in the SAP ecosystem"},
-          %{tag: "04", name: "Tourism apps", desc: "Mobile apps for tourism businesses"}
-        ]
+        all_link: "View all projects"
       },
       contact: %{
         section: "Contact",
@@ -231,13 +219,13 @@
     </div>
     <div class="sec-content">
       <h2 id="projects-heading" class="services-h2 serif"><%= t.projects.title %></h2>
-      <%= for p <- t.projects.items do %>
-        <a href={"#{if lang == "de", do: "/projekte", else: "/projects"}#project-#{p.tag}"} class="service-row">
+      <%= for p <- Projects.featured(lang) do %>
+        <a href={Projects.href(lang, p)} class="service-row">
           <div class="service-name serif"><%= p.name %></div>
-          <div class="service-body"><%= p.desc %></div>
+          <div class="service-body"><%= p.summary %></div>
         </a>
       <% end %>
-      <a href={if lang == "de", do: "/projekte", else: "/projects"} class="projects-all-link mono">
+      <a href={Projects.page_path(lang)} class="projects-all-link mono">
         <%= t.projects.all_link %> <span class="arrow">→</span>
       </a>
     </div>
