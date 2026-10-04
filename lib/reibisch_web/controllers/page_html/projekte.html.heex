@@ -139,7 +139,7 @@
     <div class="sec-content">
       <h1 id="projects-heading" class="services-h2 serif"><%= t.title %></h1>
       <%= for p <- t.clients do %>
-        <div class="service-row">
+        <div id={"project-#{p.tag}"} class="service-row service-row--static">
           <div class="service-name serif">
             <%= p.name %>
             <div class="about-role mono" style="font-size:0.72rem;margin-top:0.2em"><%= p.meta %></div>

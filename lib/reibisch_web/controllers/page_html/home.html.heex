@@ -231,11 +231,11 @@
     </div>
     <div class="sec-content">
       <h2 id="projects-heading" class="services-h2 serif"><%= t.projects.title %></h2>
-      <%= for p <- t.projects.items do %>
-        <div class="service-row">
+      <%= for {p, i} <- Enum.with_index(t.projects.items, 1) do %>
+        <a href={"#{if lang == "de", do: "/projekte", else: "/projects"}#project-0#{i}"} class="service-row">
           <div class="service-name serif"><%= p.name %></div>
           <div class="service-body"><%= p.desc %></div>
-        </div>
+        </a>
       <% end %>
       <a href={if lang == "de", do: "/projekte", else: "/projects"} class="projects-all-link mono">
         <%= t.projects.all_link %> <span class="arrow">→</span>
