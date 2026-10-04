@@ -340,6 +340,9 @@
       }
       .service-row:last-child { border-bottom: 1px solid var(--rule); }
       .service-row:hover { padding-left: 8px; }
+      a.service-row { color: inherit; text-decoration: none; }
+      /* Project page: no hover shift, it narrows the text column and reflows the body */
+      .service-row--static:hover { padding-left: 0; }
       /* "~" marker hangs in the 48px master gap, same rail as about-point numbers */
       .service-name {
         font-family: 'Newsreader', serif;
