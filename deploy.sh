@@ -43,7 +43,7 @@ else
 fi
 
 echo ">> Building $APP_IMAGE for $PLATFORM (armv7 BEAM build under qemu — slow)"
-docker buildx build "${BUILDER_FLAG[@]}" --platform "$PLATFORM" -t "$APP_IMAGE" --load .
+docker buildx build "${BUILDER_FLAG[@]}" --pull --platform "$PLATFORM" -t "$APP_IMAGE" --load .
 
 echo ">> Syncing $COMPOSE_FILE to $DEPLOY_HOST:$DEPLOY_PATH"
 scp "$COMPOSE_FILE" "$DEPLOY_HOST:$DEPLOY_PATH/"
