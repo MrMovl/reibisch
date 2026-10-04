@@ -1,11 +1,16 @@
 name: CI
 
-# Manual only. Deploys run from a dev machine via ./deploy.sh, not from Actions.
+# Runs on pull requests (including Dependabot's) and on demand. Deploys run from
+# a dev machine via ./deploy.sh, not from Actions.
 # Never add a self-hosted runner job here: on a public repo, fork PRs could run
-# arbitrary code on that runner.
+# arbitrary code on that runner. GitHub-hosted runners are free for public repos.
 
 on:
+  pull_request:
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   test:
